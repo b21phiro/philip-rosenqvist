@@ -68,7 +68,7 @@ const html: string = `
             <img src="/images/ANGRA_Philip_4.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
         </figure>
     </div>
-    <div>
+    <div id="projects">
         <h2 class="text-large-title">Projects</h2>
         <ul class="case-studies">
             <li>${ CaseStudyView(case1) }</li>

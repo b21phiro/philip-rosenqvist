@@ -41,7 +41,7 @@ export default class App {
 
         document.querySelectorAll('a').forEach((a: HTMLAnchorElement) => {
             a.addEventListener('click', (e: MouseEvent) => {
-                if (a.host === window.location.host) {
+                if (a.host === window.location.host && !a.hash) {
                     e.preventDefault();
                     this.updateView(route);
                 } else {
