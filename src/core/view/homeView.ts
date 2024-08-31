@@ -63,9 +63,9 @@ const html: string = `
             </nav>
         </section>
         <figure id="hero" class="switch-blade-figure">
-            <img src="/images/ANGRA_Philip_1.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
-            <img src="/images/ANGRA_Philip_3.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
-            <img src="/images/ANGRA_Philip_4.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
+            <img src="/philip-rosenqvist/images/ANGRA_Philip_1.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
+            <img src="/philip-rosenqvist/images/ANGRA_Philip_3.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
+            <img src="/philip-rosenqvist/images/ANGRA_Philip_4.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
         </figure>
     </div>
     <div id="projects">
