@@ -13,7 +13,7 @@ export default class App {
         this.root = root;
 
         const routes: Array<Route> = [
-            new Route("/", HomeView, {
+            new Route("/philip-rosenqvist/", HomeView, {
                 title: "Portfolio"
             })
         ];
