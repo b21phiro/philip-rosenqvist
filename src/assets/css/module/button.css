@@ -1,0 +1,65 @@
+.button,
+.button-icon {
+    position: relative;
+    display: inline-flex;
+    background-color: var(--c-beighe);
+    color: var(--c-black);
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--button-border-radius);
+    font-size: 1rem;
+    border: var(--border);
+    font-family: var(--font-bold);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+
+    transition: all 100ms linear;
+}
+
+.button {
+    height: 3rem;
+    padding-inline: 2rem;
+    text-decoration: none;
+    gap: .5rem;
+}
+
+.button-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.button a,
+.button-icon a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+}
+
+.button:hover,
+.button:focus-within,
+.button-icon:hover,
+.button-icon:focus-within {
+    transform: translate(-.25rem, .25rem);
+    box-shadow: 0 0 0 var(--c-blue);
+}
+
+.button-icon-round {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: var(--c-black);
+    width: 3rem;
+    height: 3rem;
+    transition: background-color 100ms linear;
+}
+
+.button-icon-round .feather {
+    stroke: var(--c-white);
+}
+
+.button-icon-round:hover,
+.button-icon-round:focus-within {
+    background-color: #2F2F2F;
+}

@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'DosisRegular';
+    src: local('DosisRegular'), url('./../fonts/Dosis/static/Dosis-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'DosisBold';
+    src: local('DosisBold'), url('./../fonts/Dosis/static/Dosis-Bold.ttf');
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'DosisBold', sans-serif;
+}
+
+html {
+    font-family: 'DosisRegular', sans-serif;
+}

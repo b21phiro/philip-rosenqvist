@@ -1,0 +1,7 @@
+.nav-row-list ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
