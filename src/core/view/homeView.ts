@@ -44,7 +44,7 @@ const html: string = `
             <nav class="nav-row-list">
                 <ul>
                     <li class="button">
-                        <a href="/#projects" title="Projects"></a>
+                        <a href="/philip-rosenqvist/#projects" title="Projects"></a>
                         <p>Check out my stuff</p>
                     </li>
                     <li class="button-icon">
