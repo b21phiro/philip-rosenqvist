@@ -12,8 +12,12 @@ export default class App {
     constructor(root: HTMLElement) {
         this.root = root;
 
+        const baseRoot = import.meta.env.BASE_URL;
+
+        console.log(baseRoot);
+
         const routes: Array<Route> = [
-            new Route("/philip-rosenqvist/", HomeView, {
+            new Route(baseRoot, HomeView, {
                 title: "Portfolio"
             })
         ];

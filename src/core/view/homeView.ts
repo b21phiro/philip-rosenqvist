@@ -44,7 +44,7 @@ const html: string = `
             <nav class="nav-row-list">
                 <ul>
                     <li class="button">
-                        <a href="/philip-rosenqvist/#projects" title="Projects"></a>
+                        <a href="${import.meta.env.BASE_URL}#projects" title="Projects"></a>
                         <p>Check out my stuff</p>
                     </li>
                     <li class="button-icon">
@@ -63,9 +63,9 @@ const html: string = `
             </nav>
         </section>
         <figure id="hero" class="switch-blade-figure">
-            <img src="/philip-rosenqvist/images/ANGRA_Philip_1.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
-            <img src="/philip-rosenqvist/images/ANGRA_Philip_3.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
-            <img src="/philip-rosenqvist/images/ANGRA_Philip_4.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
+            <img src="${import.meta.env.BASE_URL}images/ANGRA_Philip_1.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
+            <img src="${import.meta.env.BASE_URL}images/ANGRA_Philip_3.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
+            <img src="${import.meta.env.BASE_URL}images/ANGRA_Philip_4.jpg" alt="Philip standing in the livingroom, photo taken by Angie Gray.">
         </figure>
     </div>
     <div id="projects">
