@@ -1,5 +1,8 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+use Phro\Web\App;
 
-echo "hello world";
+require __DIR__  . '/vendor/autoload.php';
+
+$app = new App();
+$app->run();
