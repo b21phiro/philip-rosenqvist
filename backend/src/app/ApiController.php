@@ -1,8 +1,8 @@
 <?php
 
-namespace Phro\Web;
+namespace Phro\Web\App;
 
-class Controller {
+class ApiController {
 
     public function index(): void {
         print_r(json_encode(['status' => 200, 'message' => 'Hello world!']));

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phro\Web;
+namespace Phro\Web\App;
 
 class Dispatcher {
 

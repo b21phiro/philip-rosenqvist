@@ -1,6 +1,6 @@
 <?php
 
-namespace Phro\Web;
+namespace Phro\Web\App;
 
 class Router {
 
@@ -8,7 +8,7 @@ class Router {
 
     public function __construct() {
         $this->routes = [
-            new Route('GET','^\/api$', [Controller::class, 'index']),
+            new Route('GET','^\/api$', [ApiController::class, 'index']),
         ];
     }
 
