@@ -6,7 +6,7 @@ class Dispatcher {
 
     public function routeHandler(array $request, Route | null $route): void {
         if ($route === null) {
-            $controller = new Controller();
+            $controller = new ApiController();
             $controller->notFound();
         } else {
             $action = $route->getAction();
