@@ -2,4 +2,14 @@
 
 namespace Phro\Web\App\Controller;
 
-abstract class Controller {}
+use GuzzleHttp\Psr7\Request;
+
+abstract class Controller {
+
+    protected Request $request;
+
+    public function setRequest(Request $request): void {
+        $this->request = $request;
+    }
+
+}
