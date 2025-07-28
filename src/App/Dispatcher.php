@@ -4,17 +4,21 @@ namespace Phro\Web\App;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Phro\Web\App\View\View;
 
 class Dispatcher {
 
-    public function __construct() {}
+    private View $view;
+
+    public function __construct(View $view) {
+        $this->view = $view;
+    }
 
     public function handler(Request $request, array $action): void {
         if (!$action) {
             $response = new Response(404);
         } else {
-            $controller = new $action[0]();
-            $controller->setRequest($request);
+            $controller = new $action[0]($request, $this->view);
             $method = $action[1];
             $args = $action[2] ?? [];
             $handler = fn() => call_user_func_array([$controller, $method], $args);
