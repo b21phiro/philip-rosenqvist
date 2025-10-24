@@ -4,22 +4,14 @@ use GuzzleHttp\Psr7\Request;
 
 class App {
 
-    public function __construct() {}
+    protected Router $router;
 
-    public function html(Request $request): void {
-        if ($request->getUri()->getPath() === '/') {
-            $this->render(__DIR__ . '/View/Web/index.php');
-        } else {
-            $this->render(__DIR__ . '/View/Web/notFound.php', 404);
-        }
+    public function __construct(Router $router) {
+        $this->router = $router;
     }
 
-    protected function render(string $page, int $status = 200): void {
-        ob_start();
-        include $page;
-        $html = ob_get_clean();
-        echo $html;
-        http_response_code($status);
+    public function html(Request $request): void {
+        $this->router->requestHandler($request);
     }
 
 }

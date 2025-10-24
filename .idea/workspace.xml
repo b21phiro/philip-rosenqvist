@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fde7465-86ce-468b-b8d9-3cee9bfc3ed2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/RouterTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/AppTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AppTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +42,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "PHP Script.index.php.executor": "Run",
     "PHPUnit.AppTest.executor": "Run",
+    "PHPUnit.RouterTest.executor": "Run",
     "PHPUnit.tests.executor": "Run",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
@@ -53,7 +58,11 @@
       <recent name="C:\Projekt\philip-rosenqvist" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.tests">
+    <configuration name="RouterTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="RouterTest" file="$PROJECT_DIR$/tests/RouterTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
     <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner directory="$PROJECT_DIR$/tests" />
       <method v="2" />
@@ -61,6 +70,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.RouterTest" />
       </list>
     </recent_temporary>
   </component>

@@ -12,7 +12,10 @@ class AppTest extends TestCase {
         $request->method('getMethod')->willReturn('GET');
         $request->method('getUri')->willReturn(new \GuzzleHttp\Psr7\Uri('/'));
 
-        $app = new App();
+        $router = new \Phro\Web\Router();
+        $router->addRoute(["path" => "/", "method" => "GET", "handler" => fn() => __DIR__ . '/../src/View/Web/index.php']);
+
+        $app = new App($router);
 
         // Act.
         ob_start();
@@ -31,7 +34,8 @@ class AppTest extends TestCase {
         $request->method('getMethod')->willReturn('GET');
         $request->method('getUri')->willReturn(new \GuzzleHttp\Psr7\Uri('TEST_THIS_IS_NOT_A_REAL_URL'));
 
-        $app = new App();
+        $router = new \Phro\Web\Router();
+        $app = new App($router);
 
         // Act.
         ob_start();
