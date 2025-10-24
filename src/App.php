@@ -8,20 +8,18 @@ class App {
 
     public function html(Request $request): void {
         if ($request->getUri()->getPath() === '/') {
-            $pageFile = __DIR__ . '/View/Web/index.php';
-            ob_start();
-            include $pageFile;
-            $html = ob_get_clean();
-            echo $html;
+            $this->render(__DIR__ . '/View/Web/index.php');
         } else {
-            $pageFile = __DIR__ . '/View/Web/notFound.php';
-            ob_start();
-            include $pageFile;
-            $html = ob_get_clean();
-            echo $html;
-            http_response_code(404);
+            $this->render(__DIR__ . '/View/Web/notFound.php', 404);
         }
+    }
 
+    protected function render(string $page, int $status = 200): void {
+        ob_start();
+        include $page;
+        $html = ob_get_clean();
+        echo $html;
+        http_response_code($status);
     }
 
 }
