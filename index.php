@@ -1,15 +1,8 @@
 <?php
 
-use Phro\Web\App\App;
+require __DIR__ . '/vendor/autoload.php';
 
-require 'vendor/autoload.php';
-
-# Usage for .env variables.
-Dotenv\Dotenv::createImmutable(__DIR__)->load();
-
-# Init request object.
 $request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
 
-# Init application.
-$app = new App();
-$app->run($request);
+$app = new Phro\Web\App();
+$app->html($request);
