@@ -1,7 +1,7 @@
 <?php
 
-use Phro\Web\App;
 use PHPUnit\Framework\TestCase;
+use Phro\Web\App;
 
 class AppTest extends TestCase {
 
@@ -12,8 +12,10 @@ class AppTest extends TestCase {
         $request->method('getMethod')->willReturn('GET');
         $request->method('getUri')->willReturn(new \GuzzleHttp\Psr7\Uri('/'));
 
-        $router = new \Phro\Web\Router();
-        $router->addRoute(["path" => "/", "method" => "GET", "handler" => fn() => __DIR__ . '/../src/View/Web/index.php']);
+        $route = new \Phro\Web\Http\RouteGet("/", function() { echo "<!DOCTYPE html>"; });
+
+        $router = new \Phro\Web\Http\Router();
+        $router->addRoute($route);
 
         $app = new App($router);
 
@@ -32,9 +34,9 @@ class AppTest extends TestCase {
         // Arrange.
         $request = $this->createStub(\GuzzleHttp\Psr7\Request::class);
         $request->method('getMethod')->willReturn('GET');
-        $request->method('getUri')->willReturn(new \GuzzleHttp\Psr7\Uri('TEST_THIS_IS_NOT_A_REAL_URL'));
+        $request->method('getUri')->willReturn(new \GuzzleHttp\Psr7\Uri('/foo'));
 
-        $router = new \Phro\Web\Router();
+        $router = new \Phro\Web\Http\Router();
         $app = new App($router);
 
         // Act.

@@ -1,7 +1,7 @@
 <?php
 
 use Phro\Web\App;
-use Phro\Web\Router;
+use Phro\Web\Http\Router;
 
 require __DIR__ . '/vendor/autoload.php';
 
