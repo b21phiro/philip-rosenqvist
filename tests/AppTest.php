@@ -5,7 +5,6 @@ use PHPUnit\Framework\TestCase;
 use Phro\Web\App;
 use Phro\Web\Controller\Controller;
 use Phro\Web\Controller\WebsiteController;
-use Phro\Web\Controller\BookController;
 use Phro\Web\Http\GetRoute;
 use Phro\Web\Http\Route;
 

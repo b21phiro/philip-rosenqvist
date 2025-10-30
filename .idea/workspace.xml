@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fde7465-86ce-468b-b8d9-3cee9bfc3ed2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/GetRoute.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/GetRoute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/AppTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AppTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,16 +148,5 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/App.php</url>
-          <line>39</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
