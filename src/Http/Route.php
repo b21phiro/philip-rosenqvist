@@ -4,12 +4,14 @@ abstract class Route {
 
     protected string $method;
     protected string $path;
-    protected array $handler;
+    protected mixed $handler;
+    protected array $params;
 
-    public function __construct(string $method, string $path, array $handler) {
+    public function __construct(string $method, string $path, mixed $handler, array $params = []) {
         $this->method = $method;
         $this->path = $path;
         $this->handler = $handler;
+        $this->params = $params;
     }
 
     public function getMethod(): string {
@@ -20,8 +22,12 @@ abstract class Route {
         return $this->path;
     }
 
-    public function getHandler(): array {
+    public function getHandler(): mixed {
         return $this->handler;
+    }
+
+    public function getParams(): array {
+        return $this->params;
     }
 
 }
