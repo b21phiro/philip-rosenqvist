@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fde7465-86ce-468b-b8d9-3cee9bfc3ed2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/App.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Controller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/WebsiteController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/Route.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/AppTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/GetRoute.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
