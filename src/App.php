@@ -10,27 +10,33 @@ class App {
 
     public function handle(Request $request): Response {
         try {
-            $route = array_find(
-                $this->routes,
-                fn($route) =>
-                    $route->getPath() === $request->getUri()->getPath() &&
-                    $route->getMethod() === $request->getMethod()
-            );
+            $route = $this->findRoute($request);
             if (!$route) {
                 return new Response(404, [], 'Not found');
             }
-            $controller = $route->getHandler()[0];
-            $action = $route->getHandler()[1];
-            $response = call_user_func_array([new $controller, $action], []);
-            return $response;
+            return $this->callRouteHandler($route);
         } catch (\Exception $exception) {
-            return new Response(500, [], 'Internal server error');
+            return new Response(500, [], '<h1>Internal server error</h1>');
         }
 
     }
 
     public function addRoute(Route $route): void {
         $this->routes[] = $route;
+    }
+
+    protected function callRouteHandler(Route $route): Response {
+        $controllerName = $route->getHandler()[0];
+        $controller = new $controllerName;
+        $controllerMethod = $route->getHandler()[1];
+        return call_user_func_array([new $controller, $controllerMethod], []);
+    }
+
+    protected function findRoute(Request $request): Route | null {
+        return array_find($this->routes, fn(Route $r)
+            => $r->getPath() === $request->getUri()->getPath()
+            && $r->getMethod() === $request->getMethod()
+        );
     }
 
 }
