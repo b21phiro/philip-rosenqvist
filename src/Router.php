@@ -21,8 +21,13 @@ class Router {
 
     }
 
-    public function addRoute(Route $route): void {
-        $this->routes[] = $route;
+    public function addRoute(Route ...$routes): void {
+        $newRoutes = array_filter($routes, fn(Route $route) => !$this->isRoute($route));
+        $this->routes = array_merge($this->routes, $newRoutes);
+    }
+
+    public function getRoutes(): array {
+        return $this->routes;
     }
 
     protected function callRouteHandler(array $result): Response {
@@ -65,6 +70,14 @@ class Router {
             }
         }
         return $result;
+    }
+
+    protected function isRoute(Route $route): Route | null {
+        return array_find($this->routes,
+            fn(Route $r) =>
+                $r->getPath() === $route->getPath() &&
+                $r->getMethod() === $route->getMethod()
+        );
     }
 
 }
