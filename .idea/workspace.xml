@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fde7465-86ce-468b-b8d9-3cee9bfc3ed2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/recourses/includes/templates/default.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/recourses/views/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Controller/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/WebsiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Controller/WebsiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/GetRoute.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Http/GetRoute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Http/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/AppTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AppTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/RouterTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RouterTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Controller/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Controller/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Controller/WebsiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Controller/WebsiteController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +159,7 @@
       <workItem from="1761895093684" duration="775000" />
       <workItem from="1761895880385" duration="2744000" />
       <workItem from="1761901184493" duration="1924000" />
-      <workItem from="1761903187204" duration="849000" />
+      <workItem from="1761903187204" duration="907000" />
     </task>
     <servers />
   </component>
