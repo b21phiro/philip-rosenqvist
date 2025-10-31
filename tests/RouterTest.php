@@ -1,9 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Phro\Web\Core\Controller\Controller;
 use Phro\Web\Core\Controller\WebsiteController;
-use Phro\Web\Core\Http\GetRoute;
+use Phro\Web\Core\Http\Route\GetRoute;
 use Phro\Web\Core\Router;
 
 class RouterTest extends TestCase {

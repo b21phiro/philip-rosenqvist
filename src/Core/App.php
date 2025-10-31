@@ -2,7 +2,7 @@
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Phro\Web\Core\Http\Route;
+use Phro\Web\Core\Http\Route\Route;
 
 class App {
 

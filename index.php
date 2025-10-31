@@ -4,7 +4,7 @@
 
 use Phro\Web\Core\Controller\WebsiteController;
 use Phro\Web\Core\Http\Dispatcher\Dispatcher;
-use Phro\Web\Core\Http\GetRoute;
+use Phro\Web\Core\Http\Route\GetRoute;
 
 require __DIR__ . '/vendor/autoload.php';
 

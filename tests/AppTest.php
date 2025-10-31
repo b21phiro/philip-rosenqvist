@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use Phro\Web\Core\App;
 use Phro\Web\Core\Controller\WebsiteController;
-use Phro\Web\Core\Http\Route;
+use Phro\Web\Core\Http\Route\Route;
 
 class AppTest extends TestCase {
 
