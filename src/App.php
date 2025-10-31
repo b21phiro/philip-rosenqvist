@@ -16,8 +16,8 @@ class App {
        return $this->router->handle($request);
     }
 
-    public function addRoute(Route $route): void {
-        $this->router->addRoute($route);
+    public function addRoute(Route ...$routes): void {
+        $this->router->addRoute(...$routes);
     }
 
 }
