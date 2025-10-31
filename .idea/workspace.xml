@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fde7465-86ce-468b-b8d9-3cee9bfc3ed2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Core/Utils.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Http/Dispatcher/BodyDispatcher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Http/Dispatcher/Dispatcher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Http/Dispatcher/HeaderDispatcher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Http/Dispatcher/IBodyDispatcher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Http/Dispatcher/IHeaderDispatcher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/DispatcherTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Mocks/BodyDispatcherMock.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Mocks/HeaderDispatcherMock.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Controller/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Controller/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +25,9 @@
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -97,6 +108,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
     "settings.editor.selected.configurable": "php.test.frameworks.configurable",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2025.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
@@ -160,7 +172,7 @@
       <workItem from="1761895093684" duration="775000" />
       <workItem from="1761895880385" duration="2744000" />
       <workItem from="1761901184493" duration="1924000" />
-      <workItem from="1761903187204" duration="1062000" />
+      <workItem from="1761903187204" duration="6917000" />
     </task>
     <servers />
   </component>

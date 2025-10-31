@@ -2,7 +2,8 @@
     "name": "phro/web",
     "autoload": {
         "psr-4": {
-            "Phro\\Web\\": "src/"
+            "Phro\\Web\\": "src/",
+            "Phro\\Tests\\": "tests/"
         }
     },
     "authors": [
