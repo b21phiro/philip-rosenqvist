@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fde7465-86ce-468b-b8d9-3cee9bfc3ed2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BookController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/AppTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AppTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +83,7 @@
     "PHPUnit.RouterTest.executor": "Run",
     "PHPUnit.tests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
@@ -106,7 +106,7 @@
       <recent name="C:\Projekt\philip-rosenqvist" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.AppTest.testShouldReturnSpecificResourceWhenRequestedHitsPathVariables">
+  <component name="RunManager" selected="PHPUnit.tests">
     <configuration name="AppTest.testShouldReturnSpecificResourceWhenRequestedHitsPathVariables" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="AppTest" file="$PROJECT_DIR$/tests/AppTest.php" method="testShouldReturnSpecificResourceWhenRequestedHitsPathVariables" scope="Method" />
       <method v="2" />
@@ -121,8 +121,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.AppTest.testShouldReturnSpecificResourceWhenRequestedHitsPathVariables" />
         <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.AppTest.testShouldReturnSpecificResourceWhenRequestedHitsPathVariables" />
         <item itemvalue="PHPUnit.RouterTest" />
       </list>
     </recent_temporary>
@@ -143,6 +143,7 @@
       <option name="presentableId" value="Default" />
       <updated>1761320440656</updated>
       <workItem from="1761320441956" duration="502000" />
+      <workItem from="1761894062523" duration="114000" />
     </task>
     <servers />
   </component>
