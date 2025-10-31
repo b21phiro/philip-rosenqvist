@@ -17,7 +17,7 @@
 <html lang="<?= $lang ?>">
     <head>
         <title><?= $title; ?></title>
-        <link rel="icon" type="image/png" href="public/favicon.ico"/>
+        <link rel="icon" type="image/png" href="/public/favicon.ico"/>
     </head>
     <body>
         <?= $content; ?>
