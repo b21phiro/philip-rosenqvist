@@ -1,8 +1,8 @@
-<?php namespace Phro\Web;
+<?php namespace Phro\Web\Core;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Phro\Web\Http\Route;
+use Phro\Web\Core\Http\Route;
 
 class App {
 

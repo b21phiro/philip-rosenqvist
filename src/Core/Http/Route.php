@@ -1,4 +1,4 @@
-<?php namespace Phro\Web\Http;
+<?php namespace Phro\Web\Core\Http;
 
 abstract class Route {
 

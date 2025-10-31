@@ -1,24 +1,18 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-
-use Phro\Web\Controller\Controller;
-use Phro\Web\Router;
-use Phro\Web\Http\GetRoute;
-
-class StubController extends Controller {
-    public function book(int $id): \GuzzleHttp\Psr7\Response {
-        return new \GuzzleHttp\Psr7\Response(200, [], 'Book '.$id);
-    }
-}
+use Phro\Web\Core\Controller\Controller;
+use Phro\Web\Core\Controller\WebsiteController;
+use Phro\Web\Core\Http\GetRoute;
+use Phro\Web\Core\Router;
 
 class RouterTest extends TestCase {
 
     function testShouldIncreaseTheAmountOfRoutesWhenAddingNewRoute() {
         // Arrange.
         $router = new Router();
-        $route1 = new GetRoute('/foo', [StubController::class, 'book']);
-        $route2 = new GetRoute('/bar', [StubController::class, 'book']);
+        $route1 = new GetRoute('/foo', [WebsiteController::class, 'index']);
+        $route2 = new GetRoute('/bar', [WebsiteController::class, 'index']);
         // Act.
         $router->addRoute($route1);
         $router->addRoute($route2);
@@ -30,7 +24,7 @@ class RouterTest extends TestCase {
     function testShouldNotAddDuplicatedRoutesWhenAddingAnEqualRoute() {
         // Arrange.
         $router = new Router();
-        $route1 = new GetRoute('/foo', [StubController::class, 'book']);
+        $route1 = new GetRoute('/foo', [WebsiteController::class, 'index']);
         $route2 = $route1;
         // Act.
         $router->addRoute($route1);
@@ -42,8 +36,8 @@ class RouterTest extends TestCase {
     function testShouldNotReplacePreviouslyAddedRoutesWhenAddingMultipleRoutes() {
         // Arrange.
         $router = new Router();
-        $route1 = new GetRoute('/foo', [StubController::class, 'book']);
-        $route2 = new GetRoute('/bar', [StubController::class, 'book']);
+        $route1 = new GetRoute('/foo', [WebsiteController::class, 'index']);
+        $route2 = new GetRoute('/bar', [WebsiteController::class, 'index']);
         // Act.
         $router->addRoute($route1, $route2);
         // Assert.
@@ -53,7 +47,7 @@ class RouterTest extends TestCase {
     function testShouldReturnSpecificResourceWhenRequestedHitsPathVariables() {
         // Arrange.
         $request = new \GuzzleHttp\Psr7\Request('GET', '/blog/post/1', [], null, '1.1');
-        $route = new GetRoute('/blog/post/:id', [StubController::class, 'book'], ['id' => 'int']);
+        $route = new GetRoute('/blog/post/:id', fn(int $id) => new \GuzzleHttp\Psr7\Response(200, [], 'Book '.$id), ['id' => 'int']);
         $router = new Router();
         $router->addRoute($route);
         // Act.

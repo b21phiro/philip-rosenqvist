@@ -1,10 +1,9 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-
-use Phro\Web\App;
-use Phro\Web\Controller\WebsiteController;
-use Phro\Web\Http\Route;
+use Phro\Web\Core\App;
+use Phro\Web\Core\Controller\WebsiteController;
+use Phro\Web\Core\Http\Route;
 
 class AppTest extends TestCase {
 

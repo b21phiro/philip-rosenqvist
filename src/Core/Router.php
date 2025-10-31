@@ -1,8 +1,8 @@
-<?php namespace Phro\Web;
+<?php namespace Phro\Web\Core;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Phro\Web\Http\Route;
+use Phro\Web\Core\Http\Route;
 
 class Router {
 
@@ -39,6 +39,10 @@ class Router {
                 return $arg;
             }
         }, $result[1]);
+        $handler = $route->getHandler();
+        if (is_callable($handler)) {
+            return $handler(...$args);
+        }
         $controllerName = $route->getHandler()[0];
         $controller = new $controllerName;
         $controllerMethod = $route->getHandler()[1];
