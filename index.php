@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_startup_errors', 1);
+// ini_set('display_startup_errors', 1);
 
 use Phro\Web\Controller\WebsiteController;
 use \Phro\Web\Http\GetRoute;
