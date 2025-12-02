@@ -1,0 +1,15 @@
+{
+    "name": "phro/web",
+    "autoload": {
+        "psr-4": {
+            "Phro\\Web\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Philip Rosenqvist",
+            "email": "philip.rosenqvist@outlook.com"
+        }
+    ],
+    "require": {}
+}

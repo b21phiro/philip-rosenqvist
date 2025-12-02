@@ -22,5 +22,5 @@ frontend/*.sln
 frontend/*.sw?
 
 .idea
-
+backend/vendor
 backend/.idea

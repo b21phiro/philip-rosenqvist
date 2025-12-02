@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    root: './',
+    base: '/public/',
     build: {
         outDir: '../backend/public',
         emptyOutDir: true,
