@@ -1,5 +1,6 @@
 {
     "name": "phro/web",
+    "description": "Personal website and blog for Philip Rosenqvist",
     "autoload": {
         "psr-4": {
             "Phro\\Web\\": "src/"
