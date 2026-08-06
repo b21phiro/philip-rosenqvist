@@ -55,6 +55,7 @@ export default class AppModel {
             case PageID.Contact:
                 this.pages.set(pageID, new (await import("./pages/Contact.ts")).default());
                 break;
+            case PageID.Unknown:
             default:
                 throw new Error("Can not load this unknown page.");
         }
