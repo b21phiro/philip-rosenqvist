@@ -22,9 +22,8 @@
     --border-color: var(--black);
     --text-color: var(--black);
 
-    --font-normal: 'DosisRegular', sans-serif;
-    --font-bold: 'DosisBold', sans-serif;
-
+    --font-normal: 'DosisRegular';
+    --font-bold: 'DosisBold';
     --stroke-width: .125rem;
 
     --border-radius: 1rem;
