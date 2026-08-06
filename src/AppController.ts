@@ -10,19 +10,23 @@ export default class AppController {
     }
 
     public showHomePage(): void {
-        this.model.setCurrentPage(PageEnums.Home);
+        this.model.setCurrentPage(PageEnums.Home)
+            .catch((error) => console.error("Failed to load home page: ", error));
     }
 
     public showAboutMePage(): void {
-        this.model.setCurrentPage(PageEnums.About);
+        this.model.setCurrentPage(PageEnums.About)
+            .catch((error) => console.error("Failed to load about page: ", error));
     }
 
     public showBlogPage(): void {
-        this.model.setCurrentPage(PageEnums.Blog);
+        this.model.setCurrentPage(PageEnums.Blog)
+            .catch((error) => console.error("Failed to load the blog page: ", error));
     }
 
     public showContactPage(): void {
-        this.model.setCurrentPage(PageEnums.Contact);
+        this.model.setCurrentPage(PageEnums.Contact)
+            .catch((error) => console.error("Failed to load the contact page: ", error));
     }
 
     public loadPage(page: number) {

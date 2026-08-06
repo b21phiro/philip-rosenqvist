@@ -45,19 +45,15 @@ export default class AppModel {
 
         switch (pageID) {
             case PageEnums.Home:
-                console.log("Loading Home");
                 this.pages.set(pageID, new (await import("./pages/Home.ts")).default());
                 break;
             case PageEnums.About:
-                console.log("Loading About");
                 this.pages.set(pageID, new (await import("./pages/About.ts")).default());
                 break;
             case PageEnums.Blog:
-                console.log("Loading Blog");
                 this.pages.set(pageID, new (await import("./pages/Blog.ts")).default());
                 break;
             case PageEnums.Contact:
-                console.log("Loading Contact");
                 this.pages.set(pageID, new (await import("./pages/Contact.ts")).default());
                 break;
             default:
