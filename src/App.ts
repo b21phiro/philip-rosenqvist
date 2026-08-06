@@ -1,6 +1,7 @@
 import AppView from "./AppView.ts";
 import AppModel from "./AppModel.ts";
 import AppController from "./AppController.ts";
+import PageEnums from "./pages/PageEnums.ts";
 
 export default class App {
 
@@ -18,6 +19,16 @@ export default class App {
                e.preventDefault();
                this.goTo(e.target.pathname);
            }
+        });
+
+        // Preload page modules and init their instance when being hovered on.
+        window.addEventListener('mouseover', (e) => {
+            if (e.target instanceof HTMLAnchorElement) {
+                e.preventDefault();
+                const page = this.whatPageIsThisPath(e.target.pathname);
+                if (page === PageEnums.Unknown) return;
+                this.controller.loadPage(page);
+            }
         });
 
     }
@@ -44,6 +55,14 @@ export default class App {
                 console.error("Error 404");
                 break;
         }
+    }
+
+    public whatPageIsThisPath(pathname: string): number {
+        if (pathname === '/philip-rosenqvist/') return PageEnums.Home;
+        else if (pathname === '/philip-rosenqvist/about') return PageEnums.About;
+        else if (pathname === '/philip-rosenqvist/blog') return PageEnums.Blog;
+        else if (pathname === '/philip-rosenqvist/contact') return PageEnums.Contact
+        else return PageEnums.Unknown;
     }
 
 }

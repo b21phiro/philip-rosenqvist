@@ -2,6 +2,8 @@ import type Page from "./Page.ts";
 
 class Contact implements Page {
 
+    title: string = "Contact me";
+
     public mount(main: HTMLElement) {
         main.insertAdjacentHTML('afterbegin', '<h1>Contact me</h1>');
     }

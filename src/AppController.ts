@@ -25,4 +25,8 @@ export default class AppController {
         this.model.setCurrentPage(PageEnums.Contact);
     }
 
+    public loadPage(page: number) {
+        this.model.loadPage(page).catch((error) => console.error("Failed to load page: ", error));
+    }
+
 }
