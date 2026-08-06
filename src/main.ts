@@ -1,5 +1,5 @@
 import './assets/css/style.css';
-import App from "./core/app.ts";
+import App from "./core/App/App.ts";
 
 window.onload = () => {
 
@@ -9,7 +9,9 @@ window.onload = () => {
         return;
     }
 
-    const app = new App(root);
+    const app = new App(root, {
+        baseFolderPath: '/philip-rosenqvist'
+    });
     app.run();
 
 };

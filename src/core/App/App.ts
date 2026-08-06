@@ -1,19 +1,25 @@
-import AppView from "./view/appView.ts";
-import Router from "./router.ts";
-import Route from "./route.ts";
-import HomeView from "./view/homeView.ts";
-import Config from "./config.ts";
+import AppConfig from "./AppConfig.ts";
+import AppView from "../view/appView.ts";
+import Router from "../router.ts";
+import Route from "../route.ts";
+import HomeView from "../view/homeView.ts";
+import Config from "../config.ts";
 
 export default class App {
 
     private root: HTMLElement;
     private router: Router;
 
-    constructor(root: HTMLElement) {
+    constructor(root: HTMLElement, config: AppConfig) {
+
+        const {
+            baseFolderPath
+        } = config;
+
         this.root = root;
 
         const routes: Array<Route> = [
-            new Route("/philip-rosenqvist/", HomeView, {
+            new Route(`${baseFolderPath}/`, HomeView, {
                 title: "Portfolio"
             })
         ];
