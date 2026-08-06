@@ -1,6 +1,9 @@
 @import './themes/default.css';
 @import './fonts/nunito.css';
 @import './base.css';
+@import './layout/app.css';
+@import './layout/footer.css';
+@import './layout/header.css';
 @import './module/logo.css';
 @import './module/text.css';
 @import './module/button.css';

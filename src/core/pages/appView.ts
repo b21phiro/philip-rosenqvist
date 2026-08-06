@@ -1,4 +1,3 @@
-import './../../assets/css/layout/app.css';
 import Header from "../layout/header.ts";
 import Footer from "../layout/footer.ts";
 

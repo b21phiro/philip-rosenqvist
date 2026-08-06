@@ -1,19 +1,16 @@
 import AppRoutes from "./AppRoutes.ts";
-import AppView from "../view/appView.ts";
+import AppView from "./AppView.ts";
 import AppRouter from "./AppRouter.ts";
 import AppConfig from "./AppConfig.ts";
 
 export class App {
 
-    private root: HTMLElement;
     private router: AppRouter;
-
-    private readonly title: string;
+    private view: AppView;
 
     constructor(root: HTMLElement, routes: AppRoutes, options: AppConfig) {
-        this.root = root;
+        this.view = new AppView(root, options.title);
         this.router = new AppRouter(routes);
-        this.title = options.title;
 
         document.querySelectorAll('a').forEach((a: HTMLAnchorElement) => {
             a.addEventListener('click', (e: MouseEvent) => {
@@ -24,26 +21,11 @@ export class App {
     }
 
     public run(): void {
-        const found = this.router.findRoute(window.location);
-        if (!found) {
+        const route = this.router.findRoute(window.location);
+        if (!route) {
             console.error("Error 404");
             return;
         }
-        this.updateDocTitle(found.title);
-        this.updateView(found.controller());
+        this.view.render(route);
     }
-
-    private updateView(page: string): void {
-        this.clearRootView();
-        this.root.insertAdjacentHTML('beforeend', AppView(page));
-    }
-
-    private clearRootView(): void {
-        this.root.innerHTML = "";
-    }
-
-    private updateDocTitle(title: string = ""): void {
-        document.title = `${title} | ${this.title}`;
-    }
-
 }

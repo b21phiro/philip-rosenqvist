@@ -1,7 +1,7 @@
 import './assets/css/style.css';
 import {App} from "./core/App/App.ts";
 import AppRoutes from "./core/App/AppRoutes.ts";
-import HomeView from "./core/view/homeView.ts";
+import HomeView from "./core/pages/homeView.ts";
 import AppConfig from "./core/App/AppConfig.ts";
 
 window.onload = () => {
@@ -17,7 +17,8 @@ window.onload = () => {
     };
 
     const routes: AppRoutes = [
-        { title: 'Home', path: '/philip-rosenqvist/', controller: () => { return HomeView() } }
+        { title: 'Home', path: '/philip-rosenqvist/', controller: () => { return HomeView() } },
+        //{ title: 'About me', path: '/philip-rosenqvist/about', controller: () => { return HomeView() } }
     ];
 
     const app = new App(root, routes, options);
