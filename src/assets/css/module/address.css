@@ -1,0 +1,9 @@
+.contact-info nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-info nav a {
+    width: fit-content;
+}

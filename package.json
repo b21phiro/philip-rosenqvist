@@ -1,0 +1,20 @@
+{
+  "name": "philip-rosenqvist",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  },
+  "description": "My personal website",
+  "main": "index.js",
+  "repository": "https://github.com/b21phiro/philip-rosenqvist.git",
+  "author": "Philip Rosenqvist <philip.rosenqvist@outlook.com>",
+  "license": "MIT"
+}
