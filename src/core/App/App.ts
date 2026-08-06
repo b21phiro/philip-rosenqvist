@@ -1,30 +1,21 @@
-import AppConfig from "./AppConfig.ts";
+import AppRoutes from "./AppRoutes.ts";
 import AppView from "../view/appView.ts";
 import Router from "../router.ts";
 import Route from "../route.ts";
-import HomeView from "../view/homeView.ts";
-import Config from "../config.ts";
+import AppConfig from "./AppConfig.ts";
 
 export default class App {
 
     private root: HTMLElement;
     private router: Router;
 
-    constructor(root: HTMLElement, config: AppConfig) {
+    private readonly title: string;
 
-        const {
-            baseFolderPath
-        } = config;
-
+    constructor(root: HTMLElement, routes: AppRoutes, options: AppConfig) {
         this.root = root;
-
-        const routes: Array<Route> = [
-            new Route(`${baseFolderPath}/`, HomeView, {
-                title: "Portfolio"
-            })
-        ];
-
         this.router = new Router(routes);
+
+        this.title = options.title;
 
     }
 
@@ -65,7 +56,7 @@ export default class App {
     }
 
     private updateDocTitle(title: string = ""): void {
-        document.title = `${title} | ${Config.TITLE}`;
+        document.title = `${title} | ${this.title}`;
     }
 
 }

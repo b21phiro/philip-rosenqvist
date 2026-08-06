@@ -1,5 +1,5 @@
-type AppRoute = {
+import Route from "../route.ts";
 
-};
+type AppRoutes = Array<Route>
 
-export default AppRoute;
+export default AppRoutes;

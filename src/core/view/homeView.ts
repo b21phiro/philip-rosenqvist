@@ -1,7 +1,6 @@
 import Github from "../module/icons/github.ts";
 import Linkedin from "../module/icons/linkedin.ts";
 import Mail from "../module/icons/mail.ts";
-import Config from "../config.ts";
 import CaseStudyView from "../module/caseStudyView.ts";
 import CaseStudy from "../models/caseStudy.ts";
 import PhoneOutgoing from "../module/icons/phone-outgoing.ts";
@@ -33,6 +32,10 @@ const case4: CaseStudy = new CaseStudy(
 );
 case4.github = "https://github.com/b21phiro/mc_convalescence";
 
+const mail = import.meta.env.VITE_MAIL;
+const github = import.meta.env.VITE_GITHUB;
+const linkedin = import.meta.env.VITE_LINKEDIN;
+const tel = import.meta.env.VITE_TEL;
 
 const html: string = `
     <div id="landing">
@@ -48,15 +51,15 @@ const html: string = `
                         <p>Check out my stuff</p>
                     </li>
                     <li class="button-icon">
-                        <a href="${Config.GITHUB}" title="Philip's GitHub"></a>
+                        <a href="${github}" title="Philip's GitHub"></a>
                         ${ Github() }
                     </li>
                     <li class="button-icon">
-                        <a href="${Config.LINKEDIN}" title="Philip's Linkedin"></a>
+                        <a href="${linkedin}" title="Philip's Linkedin"></a>
                         ${ Linkedin() }
                     </li>
                     <li class="button-icon">
-                        <a href="mailto:${Config.MAIL}" title="Philip's Mail"></a>
+                        <a href="mailto:${mail}" title="Philip's Mail"></a>
                         ${ Mail() }
                     </li>
                 </ul>
@@ -87,13 +90,13 @@ const html: string = `
             </p>
             <address class="contact-info">
                 <nav>
-                    <a class="button nunito" href="mailto:${Config.MAIL}" title="Open up your favorite mail-service and send me an email!">
+                    <a class="button nunito" href="mailto:${mail}" title="Open up your favorite mail-service and send me an email!">
                         ${ Mail() }
-                        <span>${ Config.MAIL }</span>
+                        <span>${ mail }</span>
                     </a>
-                     <a class="button nunito" href="tel:${Config.TEL}" title="Call me!">
+                     <a class="button nunito" href="tel:${tel}" title="Call me!">
                         ${ PhoneOutgoing() }
-                        <span>${ Config.TEL }</span>
+                        <span>${tel}</span>
                      </a>
                 </nav>
             </address>
