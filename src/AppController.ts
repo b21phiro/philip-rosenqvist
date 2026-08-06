@@ -36,7 +36,8 @@ export default class AppController {
     }
 
     public loadPage(page: number) {
-        this.model.loadPage(page).catch((error) => console.error("Failed to load page: ", error));
+        this.model.loadPage(page)
+            .catch((error) => console.error("Failed to load page: ", error));
     }
 
 }

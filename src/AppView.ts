@@ -18,6 +18,7 @@ export default class AppView {
     }
 
     public showPage(page: Page) {
+        this.setDocTitle(page.title);
         const main = this.getMainElement();
         main.innerHTML = "";
         page.mount(main);
@@ -26,6 +27,10 @@ export default class AppView {
     public showLoading() {
         const main = this.getMainElement();
         main.innerHTML = "<div>Loading...</div>";
+    }
+
+    public setDocTitle(title: string): void {
+        document.title = `${title} | Philip Rosenqvist`;
     }
 
     private getMainElement(): HTMLElement {

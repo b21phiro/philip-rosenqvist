@@ -19,16 +19,15 @@ export default class AppModel {
 
     public async setCurrentPage(pageID: number): Promise<void> {
         if (!this.hasPageBeenLoadedOnceAlready(pageID)) {
-            this.view.showLoading();
-            await this.loadPage(pageID);
-        }
-        const page = this.getPage(pageID);
-        this.setDocTitle(page.title);
-        this.view.showPage(page);
-    }
 
-    public setDocTitle(title: string): void {
-        document.title = `${title} | Philip Rosenqvist`;
+            this.view.showLoading();
+
+            // Exceptions thrown here will bubble up and handled
+            // by the controller.
+            await this.loadPage(pageID);
+
+        }
+        this.view.showPage(this.getPage(pageID));
     }
 
     public getPage(pageID: number): Page {
@@ -42,24 +41,25 @@ export default class AppModel {
 
         if (this.hasPageBeenLoadedOnceAlready(pageID)) return;
 
-        switch (pageID) {
-            case PageID.Home:
-                this.pages.set(pageID, new (await import("./pages/Home.ts")).default());
-                break;
-            case PageID.About:
-                this.pages.set(pageID, new (await import("./pages/About.ts")).default());
-                break;
-            case PageID.Blog:
-                this.pages.set(pageID, new (await import("./pages/Blog.ts")).default());
-                break;
-            case PageID.Contact:
-                this.pages.set(pageID, new (await import("./pages/Contact.ts")).default());
-                break;
-            case PageID.Unknown:
-            default:
-                throw new Error("Can not load this unknown page.");
+        try {
+            switch (pageID) {
+                case PageID.About:
+                    this.pages.set(pageID, new (await import("./pages/About.ts")).default());
+                    break;
+                case PageID.Blog:
+                    this.pages.set(pageID, new (await import("./pages/Blog.ts")).default());
+                    break;
+                case PageID.Contact:
+                    this.pages.set(pageID, new (await import("./pages/Contact.ts")).default());
+                    break;
+                case PageID.Home:
+                case PageID.Unknown:
+                default:
+                    break;
+            }
+        } catch (e) {
+            throw new Error(`Failed to load page: ${pageID}`);
         }
-
     }
 
     public hasPageBeenLoadedOnceAlready(page: number): boolean {

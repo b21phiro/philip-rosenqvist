@@ -5,13 +5,14 @@ import { PageID, PagePaths } from "./pages/Page.ts";
 
 export default class App {
 
-    private view: AppView;
-    private model: AppModel;
-    private controller: AppController;
+    private view        : AppView;
+    private model       : AppModel;
+    private controller  : AppController;
 
     public constructor(root: HTMLElement) {
-        this.view = new AppView(root);
-        this.model = new AppModel(this.view);
+
+        this.view       = new AppView(root);
+        this.model      = new AppModel(this.view);
         this.controller = new AppController(this.model);
 
         // Handles clicking navigation as SPA.
