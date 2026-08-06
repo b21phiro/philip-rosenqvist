@@ -1,5 +1,5 @@
-import Route from "../route.ts";
+import AppRoute from "./AppRoute.ts";
 
-type AppRoutes = Array<Route>
+type AppRoutes = AppRoute[];
 
 export default AppRoutes;

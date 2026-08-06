@@ -1,7 +1,6 @@
 import './assets/css/style.css';
-import App from "./core/App/App.ts";
+import {App} from "./core/App/App.ts";
 import AppRoutes from "./core/App/AppRoutes.ts";
-import Route from "./core/route.ts";
 import HomeView from "./core/view/homeView.ts";
 import AppConfig from "./core/App/AppConfig.ts";
 
@@ -14,14 +13,11 @@ window.onload = () => {
     }
 
     const options: AppConfig = {
-        baseFolderPath: '/philip-rosenqvist',
         title: import.meta.env.VITE_TITLE
     };
 
     const routes: AppRoutes = [
-        new Route(`${options.baseFolderPath}/`, HomeView, {
-            title: "Portfolio"
-        })
+        { title: 'Home', path: '/philip-rosenqvist/', controller: () => { return HomeView() } }
     ];
 
     const app = new App(root, routes, options);

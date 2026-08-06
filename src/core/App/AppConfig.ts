@@ -1,5 +1,4 @@
 type AppConfig = {
-    baseFolderPath: string;
     title: string;
 };
 
