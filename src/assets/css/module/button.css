@@ -25,6 +25,8 @@
     text-decoration: none;
     gap: .5rem;
     text-transform: uppercase;
+    font-weight: bold;
+    font-style: normal;
 }
 
 .button-icon {

@@ -8,6 +8,10 @@
     line-height: 1.5;
 }
 
+.text-bold {
+    font-weight: bold;
+}
+
 .text-normal.text-bold {
     letter-spacing: 1px;
 }
