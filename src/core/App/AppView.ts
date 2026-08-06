@@ -4,7 +4,6 @@ import AppRoute from "./AppRoute.ts";
 
 class AppView {
 
-    private pageContainer: HTMLElement;
     private readonly baseTitle: string;
 
     constructor(root: HTMLElement, baseTitle: string) {
@@ -13,7 +12,6 @@ class AppView {
             <main id="main"></main>
             ${Footer()}
         `);
-        this.pageContainer = root.querySelector('#main')!;
         this.baseTitle = baseTitle;
     }
 
@@ -27,14 +25,7 @@ class AppView {
     }
 
     private updatePage(page: string): void {
-        this.clearPage();
-        this.pageContainer.innerHTML = page;
-    }
-
-    private clearPage(): void {
-        while (this.pageContainer.firstChild) {
-            this.pageContainer.removeChild(this.pageContainer.firstChild);
-        }
+        document.getElementById('main')!.innerHTML = page;
     }
 
 }
