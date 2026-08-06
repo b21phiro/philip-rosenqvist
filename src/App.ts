@@ -1,7 +1,7 @@
 import AppView from "./AppView.ts";
 import AppModel from "./AppModel.ts";
 import AppController from "./AppController.ts";
-import PageEnums from "./pages/PageEnums.ts";
+import { PageID, PagePaths } from "./pages/Page.ts";
 
 export default class App {
 
@@ -14,6 +14,7 @@ export default class App {
         this.model = new AppModel(this.view);
         this.controller = new AppController(this.model);
 
+        // Handles clicking navigation as SPA.
         window.addEventListener('click', (e) => {
            if (e.target instanceof HTMLAnchorElement) {
                e.preventDefault();
@@ -25,8 +26,8 @@ export default class App {
         window.addEventListener('mouseover', (e) => {
             if (e.target instanceof HTMLAnchorElement) {
                 e.preventDefault();
-                const page = this.whatPageIsThisPath(e.target.pathname);
-                if (page === PageEnums.Unknown) return;
+                const page = this.findPageID(e.target.pathname);
+                if (page === PageID.Unknown) return;
                 this.controller.loadPage(page);
             }
         });
@@ -38,31 +39,15 @@ export default class App {
     }
 
     public goTo(pathname: string): void {
-        switch (pathname) {
-            case '/philip-rosenqvist/':
-                this.controller.showHomePage();
-                break;
-            case '/philip-rosenqvist/about':
-                this.controller.showAboutMePage();
-                break;
-            case '/philip-rosenqvist/blog':
-                this.controller.showBlogPage();
-                break;
-            case '/philip-rosenqvist/contact':
-                this.controller.showContactPage();
-                break;
-            default:
-                console.error("Error 404");
-                break;
-        }
+        this.controller.showPage(this.findPageID(pathname));
     }
 
-    public whatPageIsThisPath(pathname: string): number {
-        if (pathname === '/philip-rosenqvist/') return PageEnums.Home;
-        else if (pathname === '/philip-rosenqvist/about') return PageEnums.About;
-        else if (pathname === '/philip-rosenqvist/blog') return PageEnums.Blog;
-        else if (pathname === '/philip-rosenqvist/contact') return PageEnums.Contact
-        else return PageEnums.Unknown;
+    public findPageID(pathname: string): number {
+        if      (pathname === PagePaths.Home    ) return PageID.Home;
+        else if (pathname === PagePaths.About   ) return PageID.About;
+        else if (pathname === PagePaths.Blog    ) return PageID.Blog;
+        else if (pathname === PagePaths.Contact ) return PageID.Contact
+        else                                      return PageID.Unknown;
     }
 
 }

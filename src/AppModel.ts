@@ -1,6 +1,5 @@
 import type AppView from "./AppView.ts";
-import  Page from "./pages/Page.ts";
-import PageEnums from "./pages/PageEnums.ts";
+import Page, { PageID } from "./pages/Page.ts";
 import Home from "./pages/Home.ts";
 
 export default class AppModel {
@@ -13,7 +12,7 @@ export default class AppModel {
 
         // Pre-initialized and cached pages.
         this.pages = new Map([
-            [PageEnums.Home, new Home()]
+            [PageID.Home, new Home()]
         ]);
 
     }
@@ -44,16 +43,16 @@ export default class AppModel {
         if (this.hasPageBeenLoadedOnceAlready(pageID)) return;
 
         switch (pageID) {
-            case PageEnums.Home:
+            case PageID.Home:
                 this.pages.set(pageID, new (await import("./pages/Home.ts")).default());
                 break;
-            case PageEnums.About:
+            case PageID.About:
                 this.pages.set(pageID, new (await import("./pages/About.ts")).default());
                 break;
-            case PageEnums.Blog:
+            case PageID.Blog:
                 this.pages.set(pageID, new (await import("./pages/Blog.ts")).default());
                 break;
-            case PageEnums.Contact:
+            case PageID.Contact:
                 this.pages.set(pageID, new (await import("./pages/Contact.ts")).default());
                 break;
             default:

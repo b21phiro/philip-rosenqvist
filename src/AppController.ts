@@ -1,5 +1,5 @@
 import type AppModel from "./AppModel.ts";
-import PageEnums from "./pages/PageEnums.ts";
+import { PageID } from "./pages/Page.ts";
 
 export default class AppController {
 
@@ -9,24 +9,30 @@ export default class AppController {
         this.model = model;
     }
 
-    public showHomePage(): void {
-        this.model.setCurrentPage(PageEnums.Home)
-            .catch((error) => console.error("Failed to load home page: ", error));
-    }
-
-    public showAboutMePage(): void {
-        this.model.setCurrentPage(PageEnums.About)
-            .catch((error) => console.error("Failed to load about page: ", error));
-    }
-
-    public showBlogPage(): void {
-        this.model.setCurrentPage(PageEnums.Blog)
-            .catch((error) => console.error("Failed to load the blog page: ", error));
-    }
-
-    public showContactPage(): void {
-        this.model.setCurrentPage(PageEnums.Contact)
-            .catch((error) => console.error("Failed to load the contact page: ", error));
+    public showPage(pageID: number): void {
+        switch (pageID) {
+            case PageID.Home:
+                this.model.setCurrentPage(PageID.Home)
+                    .catch((error) => console.error("Failed to load home page: ", error));
+                break;
+            case PageID.About:
+                this.model.setCurrentPage(PageID.About)
+                    .catch((error) => console.error("Failed to load about page: ", error));
+                break;
+            case PageID.Blog:
+                this.model.setCurrentPage(PageID.Blog)
+                    .catch((error) => console.error("Failed to load the blog page: ", error));
+                break;
+            case PageID.Contact:
+                this.model.setCurrentPage(PageID.Contact)
+                    .catch((error) => console.error("Failed to load the contact page: ", error));
+                break;
+            case PageID.Unknown:
+            default:
+                // #TODO: Fix proper 404 page.
+                console.error("Error 404");
+                break;
+        }
     }
 
     public loadPage(page: number) {
