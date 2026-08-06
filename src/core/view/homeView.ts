@@ -37,13 +37,13 @@ case4.github = "https://github.com/b21phiro/mc_convalescence";
 const html: string = `
     <div id="landing">
         <section>
-            <h1 class="text-normal text-bold">My name is Philip Rosenqivst</h1>
-            <p class="text-title">
+            <h1 class="dosis-bold text-normal text-bold">My name is Philip Rosenqivst</h1>
+            <p class="dosis-bold text-title">
                 I just graduated as a web developer from the University of Skövde. I love coding as well as UI/UX design
             </p>
             <nav class="nav-row-list">
                 <ul>
-                    <li class="button">
+                    <li class="button dosis-bold">
                         <a href="/philip-rosenqvist/#projects" title="Projects"></a>
                         <p>Check out my stuff</p>
                     </li>
@@ -69,7 +69,7 @@ const html: string = `
         </figure>
     </div>
     <div id="projects">
-        <h2 class="text-large-title">Projects</h2>
+        <h2 class="dosis-bold text-large-title">Projects</h2>
         <ul class="case-studies">
             <li>${ CaseStudyView(case1) }</li>
             <li>${ CaseStudyView(case2) }</li>
@@ -79,19 +79,19 @@ const html: string = `
     </div>
     <div>
         <section>
-            <h2 class="text-large-title">Ey, get in touch?</h2>
-            <p class="text-normal text-bold">
+            <h2 class="text-large-title dosis-bold">Ey, get in touch?</h2>
+            <p class="text-normal dosis-bold">
                 Want to hire me? Want to ask me questions? Want to grab a coffee? 
                 You can contact me by email or phone. If you don’t have a mail or a phone, 
                 try to light a very bright beacon on the tallest mountain.
             </p>
             <address class="contact-info">
                 <nav>
-                    <a class="button" href="mailto:${Config.MAIL}" title="Open up your favorite mail-service and send me an email!">
+                    <a class="button dosis-bold" href="mailto:${Config.MAIL}" title="Open up your favorite mail-service and send me an email!">
                         ${ Mail() }
                         <span>${ Config.MAIL }</span>
                     </a>
-                     <a class="button" href="tel:${Config.TEL}" title="Call me!">
+                     <a class="button dosis-bold" href="tel:${Config.TEL}" title="Call me!">
                         ${ PhoneOutgoing() }
                         <span>${ Config.TEL }</span>
                      </a>

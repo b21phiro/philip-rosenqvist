@@ -29,8 +29,8 @@ export default (model: CaseStudy): string => {
     <article class="case-study">
         ${ img }
         <section>
-            <h3 class="text-title">${ model.title }</h3>
-            <ul class="tags">${ tags }</ul>
+            <h3 class="dosis-bold text-title">${ model.title }</h3>
+            <ul class="tags dosis-bold">${ tags }</ul>
             <p class="text-bread">${ model.description }</p>
         </section>
         <nav class="case-buttons">

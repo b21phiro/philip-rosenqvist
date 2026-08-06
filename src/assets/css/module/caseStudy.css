@@ -36,7 +36,6 @@
     padding: .5em 1em;
     background-color: var(--white);
     border-radius: var(--button-border-radius);
-    font-family: var(--font-bold);
     letter-spacing: 1px;
 }
 

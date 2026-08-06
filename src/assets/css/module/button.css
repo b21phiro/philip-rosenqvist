@@ -7,7 +7,6 @@
     box-shadow: var(--shadow);
     cursor: pointer;
     display: inline-flex;
-    font-family: var(--font-bold), sans-serif;
     font-size: 1rem;
     justify-content: center;
     position: relative;

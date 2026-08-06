@@ -1,6 +1,6 @@
 @import './themes/default.css';
+@import './fonts/dosis.css';
 @import './base.css';
-@import './font.css';
 @import './module/logo.css';
 @import './module/text.css';
 @import './module/button.css';
