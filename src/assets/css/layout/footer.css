@@ -5,8 +5,8 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    background-color: var(--c-black);
-    color: var(--c-beighe);
+    background-color: var(--text-color);
+    color: var(--beige);
     margin-top: 4rem;
 }
 

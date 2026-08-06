@@ -12,7 +12,7 @@
     border-radius: var(--border-radius);
     border: var(--border);
     padding: 2rem;
-    background-color: var(--c-beighe);
+    background-color: var(--beige);
 
     display: flex;
     flex-wrap: wrap;
@@ -34,7 +34,7 @@
 
 .tag {
     padding: .5em 1em;
-    background-color: var(--c-white);
+    background-color: var(--white);
     border-radius: var(--button-border-radius);
     font-family: var(--font-bold);
     letter-spacing: 1px;
@@ -50,7 +50,7 @@
     aspect-ratio: 1;
     border: var(--border);
     border-radius: var(--border-radius);
-    background-color: var(--c-white);
+    background-color: var(--white);
 }
 
 .case-image img {

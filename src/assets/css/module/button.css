@@ -2,17 +2,16 @@
 .button-icon {
     position: relative;
     display: inline-flex;
-    background-color: var(--c-beighe);
-    color: var(--c-black);
+    background-color: var(--button-primary-color);
+    color: var(--button-text-color);
     align-items: center;
     justify-content: center;
     border-radius: var(--button-border-radius);
     font-size: 1rem;
-    border: var(--border);
+    border: var(--button-border);
     font-family: var(--font-bold);
     cursor: pointer;
     box-shadow: var(--shadow);
-
     transition: all 100ms linear;
 }
 
@@ -21,11 +20,17 @@
     padding-inline: 2rem;
     text-decoration: none;
     gap: .5rem;
+    text-transform: uppercase;
 }
 
 .button-icon {
     width: 3rem;
     height: 3rem;
+}
+
+.button .feather,
+.button-icon .feather {
+    stroke: var(--button-text-color);
 }
 
 .button a,
@@ -40,8 +45,14 @@
 .button:focus-within,
 .button-icon:hover,
 .button-icon:focus-within {
-    transform: translate(-.25rem, .25rem);
-    box-shadow: 0 0 0 var(--c-blue);
+    transform: translate(0, .2rem);
+    box-shadow: 0 .3rem 0 var(--black);
+}
+
+.button:active,
+.button-icon:active {
+    transform: translate(0, .5rem);
+    box-shadow: 0 0 0 var(--black);
 }
 
 .button-icon-round {
@@ -49,17 +60,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    background-color: var(--c-black);
+    background-color: var(--text-color);
     width: 3rem;
     height: 3rem;
     transition: background-color 100ms linear;
 }
 
 .button-icon-round .feather {
-    stroke: var(--c-white);
-}
-
-.button-icon-round:hover,
-.button-icon-round:focus-within {
-    background-color: #2F2F2F;
+    stroke: var(--white);
 }

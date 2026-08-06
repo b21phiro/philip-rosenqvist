@@ -1,0 +1,38 @@
+:root {
+
+    --pink-light: #F29BBB;
+    --pink-darker: #EE85AB;
+
+    --beige: #E9D1BA;
+    --beige-dark: #A07E5D;
+    --brown: #5F3914;
+
+    --blue: #2A95BF;
+    --white: #fff;
+    --black: #0D0D0D;
+
+    --bg-color: var(--pink-light);
+    --bg-gradient-color: linear-gradient(0deg, var(--pink-darker) 0%, var(--pink-light) 100%);
+
+    --button-text-color: var(--brown);
+    --button-primary-color: var(--beige);
+    --button-border-color: var(--beige-dark);
+    --button-border: var(--stroke-width) solid var(--button-border-color);
+
+    --border-color: var(--black);
+    --text-color: var(--black);
+
+    --font-normal: 'DosisRegular', sans-serif;
+    --font-bold: 'DosisBold', sans-serif;
+
+    --stroke-width: .125rem;
+
+    --border-radius: 1rem;
+    --button-border-radius: .5rem;
+    --border: var(--stroke-width) solid var(--text-color);
+
+    --shadow: 0rem .5rem 0 var(--black);
+
+    --site-width: 72rem;
+
+}

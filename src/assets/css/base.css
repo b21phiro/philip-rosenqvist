@@ -1,25 +1,3 @@
-:root {
-    --c-pink   : #F29BBB;
-    --c-black  : #0D0D0D;
-    --c-beighe : #F2E3D5;
-    --c-blue   : #2A95BF;
-    --c-white  : #fff;
-
-    --font-normal: 'DosisRegular', sans-serif;
-    --font-bold: 'DosisBold', sans-serif;
-
-    --stroke-width: .125rem;
-
-    --border-radius: 1rem;
-    --button-border-radius: .5rem;
-    --border: var(--stroke-width) solid var(--c-black);
-
-    --shadow: -.25rem .25rem 0 var(--c-blue);
-
-    --site-width: 72rem;
-
-}
-
 *,
 *::after,
 *::before {
@@ -28,8 +6,9 @@
 }
 
 html {
-    background-color: var(--c-pink);
-    color: var(--c-black);
+    background-color: var(--bg-color);
+    background: var(--bg-gradient-color);
+    color: var(--text-color);
     scroll-behavior: smooth;
 }
 
