@@ -20,7 +20,13 @@ export default class App {
            if (e.target instanceof HTMLAnchorElement) {
                e.preventDefault();
                this.goTo(e.target.pathname);
+               window.history.pushState({}, '', e.target.pathname);
            }
+        });
+
+        // Handles SPA navigation when user is using browser arrow-functions.
+        window.addEventListener('popstate', () => {
+            this.goTo(window.location.pathname);
         });
 
         // Preload page modules and init their instance when being hovered on.
