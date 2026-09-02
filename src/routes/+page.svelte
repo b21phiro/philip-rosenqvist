@@ -72,7 +72,7 @@
     .hero {
         position: relative;
         width: 100vw;
-        height: 98vh;
+        height: 99vh;
         background-color: #000;
     }
 

@@ -1,3 +1,15 @@
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree/Figtree-VariableFont_wght.ttf") format("truetype");
+    font-optical-sizing: auto;
+    font-weight: 300 900;
+    font-style: normal;
+}
+
+html, button {
+    font-family: "Figtree", sans-serif;
+}
+
 body {
     margin: 0;
 }
