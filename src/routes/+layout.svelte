@@ -83,7 +83,7 @@
 
 	.logo svg path,
 	.mobile-menu-button svg {
-		stroke: #f2f2f2;
+		stroke: #D8CDCA;
 	}
 
 	.header-nav {
@@ -99,7 +99,7 @@
 
 	.mobile-menu-button,
 	.header-nav-link {
-		color: #f2f2f2;
+		color: #D8CDCA;
 		font-size: 1rem;
 		display: inline-flex;
 		min-height: 3rem;
