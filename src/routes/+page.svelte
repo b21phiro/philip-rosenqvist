@@ -1,19 +1,14 @@
-<script lang="js">
+<script lang="ts">
     import * as THREE from 'three';
+    import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
     import { onMount } from "svelte";
 
-    /** @type {HTMLCanvasElement | undefined} */
-    let canvas = $state();
+    let canvas = $state<HTMLElement>();
     let hero = $derived(canvas?.parentElement);
 
-    /** @type {THREE.WebGLRenderer} */
-    let renderer;
-
-    /** @type {THREE.Scene} */
-    let scene;
-
-    /** @type {THREE.PerspectiveCamera} */
-    let camera;
+    let renderer: THREE.WebGLRenderer;
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
 
     let canvasAspectRatio = $derived(() => {
        return renderer.domElement.width / renderer.domElement.height;
@@ -29,26 +24,63 @@
         camera.updateProjectionMatrix();
     }
 
+    function loadGltfModel(path: string): Promise<GLTF> {
+        const loader = new GLTFLoader();
+        return new Promise((res, rej) => {
+            loader.loadAsync(path)
+                .then((gltf) => {
+                    res(gltf);
+                })
+                .catch((err) => {
+                    console.error("Error: failed to load GLTF\nPath:", path, "\nReason", err);
+                    rej(err);
+                })
+        });
+    }
+
     onMount(() => {
 
-        const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-        const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        const cube = new THREE.Mesh( geometry, material );
+        let sceneLoadedComplete = false;
+
+        renderer = new THREE.WebGLRenderer({
+            canvas,
+            antialias: true,
+        });
 
         scene = new THREE.Scene();
-        scene.add(cube);
+        loadGltfModel("/glb/house.glb")
+            .then((model) => {
+                model.scene.rotateX(.1);
+                scene.add(model.scene);
 
-        renderer = new THREE.WebGLRenderer({ canvas });
+                for (const child of model.scene.children) {
+                    if (child.name === 'Light' && child instanceof THREE.Light) {
+                       child.intensity = 1;
+                    }
+                }
 
-        camera = new THREE.PerspectiveCamera(75, renderer.domElement.width / renderer.domElement.height, 0.1, 1000);
-        camera.position.z = 5;
+                sceneLoadedComplete = true;
+            });
+
+        const cameraTargetZ = 5.5;
+        camera = new THREE.PerspectiveCamera(45, renderer.domElement.width / renderer.domElement.height, 0.1, 1000);
+        camera.rotateX(0.1);
+        camera.position.x = 3.2;
+        camera.position.y = .6;
+        camera.position.z = 6;
+
+        const light = new THREE.AmbientLight(0xffffff, 0);
+        scene.add(light);
+
         resizeCanvas();
 
         renderer.setAnimationLoop(() => {
 
-            // Update
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
+            if (!sceneLoadedComplete) return;
+
+            if (camera.position.z > cameraTargetZ) {
+                camera.position.z -= 0.0002;
+            }
 
             // Draw
             renderer.render(scene, camera);
@@ -72,7 +104,7 @@
     .hero {
         position: relative;
         width: 100vw;
-        height: 99vh;
+        height: 100vh;
         background-color: #000;
     }
 
