@@ -39,16 +39,6 @@
         });
     }
 
-    function playNoiseAnimation() {
-        const turbulence = document.getElementById('noise-turbulence');
-        function animateNoise() {
-            if (!turbulence) return;
-            turbulence.setAttribute('seed', String(Math.random() * 10000));
-            requestAnimationFrame(animateNoise);
-        }
-        animateNoise();
-    }
-
     onMount(() => {
 
         let sceneLoadedComplete = false;
@@ -80,7 +70,7 @@
         camera.position.y = .6;
         camera.position.z = 6;
 
-        const light = new THREE.AmbientLight(0xffffff, 0.01);
+        const light = new THREE.AmbientLight(0xffffff, 0.001);
         scene.add(light);
 
         resizeCanvas();
@@ -98,8 +88,6 @@
             renderer.render(scene, camera);
         });
 
-        playNoiseAnimation();
-
     });
 
 </script>
@@ -108,20 +96,6 @@
 <div class="hero">
 
     <canvas bind:this={canvas}></canvas>
-
-    <div class="noise">
-        <svg width="0" height="0">
-            <filter id="noise">
-                <feTurbulence
-                        id="noise-turbulence"
-                        type="fractalNoise"
-                        baseFrequency=".8"
-                        numOctaves="3"
-                        seed="1"
-                />
-            </filter>
-        </svg>
-    </div>
 
 </div>
 
@@ -134,15 +108,6 @@
         width: 100vw;
         height: 100vh;
         background-color: #0D0101;
-    }
-
-    .noise {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        inset: 0;
-        filter: url(#noise);
-        opacity: .15;
     }
 
     .hero::after {
