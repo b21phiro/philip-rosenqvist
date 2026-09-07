@@ -2,6 +2,7 @@
     import * as THREE from 'three';
     import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
     import { onMount } from "svelte";
+    import { MoveRightIcon } from '@lucide/svelte';
 
     let canvas = $state<HTMLElement>();
     let hero = $derived(canvas?.parentElement);
@@ -134,7 +135,40 @@
 <section class="recently-from-blog">
 
     <div class="section site-wrapper">
+
         <h2 class="section-title">Latest from my blog</h2>
+
+        <div class="blog-post-grid">
+
+            <article class="blog-post-card">
+                <a class="blog-post-card--link" href="LINK TO POST" title="READ TITLE OF THE POST"></a>
+                <h3 class="blog-post-card--title">Lorem Ipsum</h3>
+                <figure class="blog-post-card--figure">
+                    <img class="blog-post-card--figure--img" src="#" alt="" />
+                </figure>
+                <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
+            </article>
+
+            <article class="blog-post-card">
+                <a class="blog-post-card--link" href="LINK TO POST" title="READ TITLE OF THE POST"></a>
+                <h3 class="blog-post-card--title">Lorem Ipsum</h3>
+                <figure class="blog-post-card--figure">
+                    <img class="blog-post-card--figure--img" src="#" alt="" />
+                </figure>
+                <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
+            </article>
+
+            <article class="blog-post-card">
+                <a class="blog-post-card--link" href="LINK TO POST" title="READ TITLE OF THE POST"></a>
+                <h3 class="blog-post-card--title">Lorem Ipsum</h3>
+                <figure class="blog-post-card--figure">
+                    <img class="blog-post-card--figure--img" src="#" alt="" />
+                </figure>
+                <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
+            </article>
+
+        </div>
+
     </div>
 
 </section>
@@ -154,6 +188,9 @@
 
     .section {
         padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .section h2 {
@@ -228,7 +265,7 @@
     .figure {
         display: flex;
         width: 100%;
-        max-height: 400px;
+        max-height: 38rem;
         aspect-ratio: 1;
         margin: 0;
         padding: 0;
@@ -242,14 +279,91 @@
         object-fit: contain;
     }
 
+    .blog-post-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .blog-post-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 18rem;
+        flex: 1;
+        max-width: 38rem;
+    }
+
+    .blog-post-card--title {
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    .blog-post-card--link {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .blog-post-card--link:hover ~ .blog-post-card--controller {
+        text-decoration: underline;
+    }
+
+    .blog-post-card--figure {
+        position: relative;
+        aspect-ratio: 1;
+        margin: 0;
+        padding: 0;
+    }
+
+    .blog-post-card--figure--img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+    }
+
+    .blog-post-card--controller {
+        font-size: 1rem;
+        color: #D8CDCA;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-left: auto;
+    }
+
     @media only screen and (min-width: 700px) {
+
         .about-me {
             flex-direction: row-reverse;
             align-items: center;
+            gap: 4rem;
         }
 
         .large-title {
             font-size: 6rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+        }
+
+        .section {
+            padding-block: 4rem;
+        }
+
+        .section,
+        .blog-post-grid {
+            gap: 4rem;
         }
 
     }
