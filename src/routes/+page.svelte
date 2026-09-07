@@ -3,6 +3,10 @@
     import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
     import { onMount } from "svelte";
     import { MoveRightIcon } from '@lucide/svelte';
+    import type { PageServerProps } from './$types';
+
+    let { data }: PageServerProps = $props();
+    let blogPosts = $derived(data.recentBlogPosts ?? []);
 
     let canvas = $state<HTMLElement>();
     let hero = $derived(canvas?.parentElement);
@@ -140,32 +144,23 @@
 
         <div class="blog-post-grid">
 
-            <article class="blog-post-card">
-                <a class="blog-post-card--link" href="LINK TO POST" title="READ TITLE OF THE POST"></a>
-                <h3 class="blog-post-card--title">Lorem Ipsum</h3>
-                <figure class="blog-post-card--figure">
-                    <img class="blog-post-card--figure--img" src="#" alt="" />
-                </figure>
-                <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
-            </article>
 
-            <article class="blog-post-card">
-                <a class="blog-post-card--link" href="LINK TO POST" title="READ TITLE OF THE POST"></a>
-                <h3 class="blog-post-card--title">Lorem Ipsum</h3>
-                <figure class="blog-post-card--figure">
-                    <img class="blog-post-card--figure--img" src="#" alt="" />
-                </figure>
-                <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
-            </article>
-
-            <article class="blog-post-card">
-                <a class="blog-post-card--link" href="LINK TO POST" title="READ TITLE OF THE POST"></a>
-                <h3 class="blog-post-card--title">Lorem Ipsum</h3>
-                <figure class="blog-post-card--figure">
-                    <img class="blog-post-card--figure--img" src="#" alt="" />
-                </figure>
-                <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
-            </article>
+            {#if blogPosts.length > 0 }
+                {#each blogPosts as blogPost}
+                    <article class="blog-post-card">
+                        <a class="blog-post-card--link" href="LINK TO POST" title="Read {blogPost.title}"></a>
+                        <h3 class="blog-post-card--title">{blogPost.title}</h3>
+                        <figure class="blog-post-card--figure">
+                            <img class="blog-post-card--figure--img"
+                                 src="http://localhost:1337{blogPost.featured_image.url}"
+                                 alt="" />
+                        </figure>
+                        <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
+                    </article>
+                {/each}
+            {:else}
+                <p>No blog posts</p>
+            {/if}
 
         </div>
 
