@@ -1,21 +1,19 @@
-.l-site-wrapper {
+.site-wrapper {
     width: 100%;
     max-width: 1920px;
     margin-inline: auto;
 }
 
-
-
 @media only screen and (max-width: 568px) {
 
-    .l-desktop-only {
+    .desktop-only {
         display: none !important;
     }
 }
 
 @media only screen and (min-width: 569px) {
 
-    .l-mobile-only {
+    .mobile-only {
         display: none !important;
     }
 

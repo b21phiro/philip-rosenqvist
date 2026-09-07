@@ -63,12 +63,12 @@
                 sceneLoadedComplete = true;
             });
 
-        const cameraTargetZ = 5;
+        const cameraTargetZ = 5.0;
         camera = new THREE.PerspectiveCamera(45, renderer.domElement.width / renderer.domElement.height, 0.1, 1000);
         camera.rotateX(0.1);
         camera.position.x = 3.2;
-        camera.position.y = .6;
-        camera.position.z = 6;
+        camera.position.y = 0.6;
+        camera.position.z = 6.0;
 
         const light = new THREE.AmbientLight(0xffffff, 0.001);
         scene.add(light);
@@ -81,7 +81,7 @@
 
             if (camera.position.z > cameraTargetZ) {
                 camera.position.z -= 0.0002;
-                camera.fov += 0.1
+                camera.fov += 0.1;
             }
 
             // Draw
@@ -95,30 +95,95 @@
 <!-- Hero -->
 <div class="hero">
 
+    <h1 class="is-hidden">Hello, you.</h1>
+
     <canvas bind:this={canvas}></canvas>
 
 </div>
+
+<!-- Little about me -->
+
+<section class="about-me site-wrapper">
+
+    <div class="col">
+
+        <h2 class="large-title text-neon">I'm Philip</h2>
+
+        <h3>I’m a software developer based in Stockholm, Sweden.</h3>
+
+        <p class="text">I like creating things that are either usefull, fun or make people feel *something*</p>
+
+        <p class="text">
+            Right now I’m developing my own game in C++ on the free-time. Don’t worry, it’s about running a café.
+            Yes, a normal café. If you’re interested in following the process from the beginning til the inevitable end,
+            check out my blog.
+        </p>
+
+    </div>
+
+    <div class="col">
+        <figure class="figure">
+            <img src="/images/me.png" alt="I like to wear black clothing, sometimes a black cap." />
+        </figure>
+    </div>
+
+</section>
+
+<!-- Latest from blog -->
+
+<section class="recently-from-blog">
+
+    <div class="section site-wrapper">
+        <h2 class="section-title">Latest from my blog</h2>
+    </div>
+
+</section>
 
 <svelte:window on:resize={() => resizeCanvas()} />
 
 <style>
 
     .hero {
-        position: relative;
         width: 100vw;
         height: 100vh;
-        background-color: #0D0101;
+    }
+
+    .recently-from-blog {
+        background-color: #070000;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .section h2 {
+        margin: 0;
+    }
+
+    .hero,
+    .recently-from-blog {
+        position: relative;
     }
 
     .hero::after {
+        background: url("/images/splatter.png");
+        bottom: 0;
+    }
+
+    .recently-from-blog::after {
+        background: url("/images/splatter-2.png");
+        bottom: 100%;
+        z-index: -1;
+    }
+
+    .hero::after,
+    .recently-from-blog::after {
         content: "";
         position: absolute;
-        bottom: 0;
         width: 100%;
         height: 16rem;
-        background: url("/images/splatter.png") repeat-x;
+        background-repeat: repeat-x;
         background-size: contain;
-
     }
 
     .hero canvas {
@@ -126,6 +191,67 @@
         inset: 0;
         width: 100%;
         height: 100%;
+    }
+
+    .large-title {
+        text-transform: uppercase;
+        font-size: 4rem;
+        margin: 0;
+    }
+
+    .text-neon {
+        color: #981213;
+        text-shadow: 0 0 8px #981213, 0 0 16px #500506;
+    }
+
+    .about-me {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+        max-width: 1280px;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+    }
+
+    .col p,
+    .col h2,
+    .col h3 {
+        margin: 0;
+    }
+
+    .figure {
+        display: flex;
+        width: 100%;
+        max-height: 400px;
+        aspect-ratio: 1;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    @media only screen and (min-width: 700px) {
+        .about-me {
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+
+        .large-title {
+            font-size: 6rem;
+        }
+
     }
 
 </style>

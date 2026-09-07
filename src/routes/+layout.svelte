@@ -2,6 +2,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/assets/css/base.css';
 	import '$lib/assets/css/layout/site.css';
+	import '$lib/assets/css/states.css';
 
 	let { children } = $props();
 
@@ -23,7 +24,7 @@
 
 <header class="header">
 
-	<div class="l-site-wrapper header-wrapper">
+	<div class="site-wrapper header-wrapper">
 
 		<!-- Logo -->
 		<a class="logo" title="Philip Rosenqvist" href="/">
@@ -31,13 +32,13 @@
 		</a>
 
 		<!-- Mobile menu button -->
-		<button class="mobile-menu-button l-mobile-only" type="button">
+		<button class="mobile-menu-button mobile-only" type="button">
 			Menu
 			<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
 		</button>
 
 		<!-- Desktop nav menu -->
-		<nav class="header-nav l-desktop-only">
+		<nav class="header-nav desktop-only">
 			<a class="header-nav-link" href="/">Home</a>
 			<a class="header-nav-link" href="/about">About</a>
 			<a class="header-nav-link" href="/blog">Blog</a>
@@ -48,7 +49,9 @@
 
 </header>
 
-{@render children()}
+<main>
+	{@render children()}
+</main>
 
 <style>
 
@@ -81,11 +84,6 @@
 		gap: .5rem;
 	}
 
-	.logo svg path,
-	.mobile-menu-button svg {
-		stroke: #D8CDCA;
-	}
-
 	.header-nav {
 		display: inline-flex;
 		align-items: center;
@@ -99,7 +97,6 @@
 
 	.mobile-menu-button,
 	.header-nav-link {
-		color: #D8CDCA;
 		font-size: 1rem;
 		display: inline-flex;
 		min-height: 3rem;

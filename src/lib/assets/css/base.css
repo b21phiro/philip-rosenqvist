@@ -6,6 +6,40 @@
     font-style: normal;
 }
 
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #0D0101;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, button {
+    color: #D8CDCA;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+svg,
+svg path {
+    stroke: #D8CDCA;
+}
+
+img, canvas {
+    display: block;
+}
+
 html, button {
     font-family: "Figtree", sans-serif;
 }
