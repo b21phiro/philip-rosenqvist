@@ -62,6 +62,16 @@
 		padding: 1rem;
 	}
 
+	.header::before {
+		position: absolute;
+		content: '';
+		background: url("/images/splatter.png");
+		background-repeat: repeat-x;
+		background-size: contain;
+		width: 100%;
+		z-index: 10;
+	}
+
 	.header-wrapper {
 		display: flex;
 		align-items: center;

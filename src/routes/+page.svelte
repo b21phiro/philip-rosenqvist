@@ -143,8 +143,6 @@
         <h2 class="section-title">Latest from my blog</h2>
 
         <div class="blog-post-grid">
-
-
             {#if blogPosts.length > 0 }
                 {#each blogPosts as blogPost}
                     <article class="blog-post-card">
@@ -153,7 +151,7 @@
                         <figure class="blog-post-card--figure">
                             <img class="blog-post-card--figure--img"
                                  src="http://localhost:1337{blogPost.featured_image.url}"
-                                 alt="" />
+                                 alt="{blogPost.featured_image.alternativeText || blogPost.title}" />
                         </figure>
                         <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
                     </article>
