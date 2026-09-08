@@ -58,8 +58,9 @@
 	.header {
 		position: fixed;
 		inset: 0;
-		z-index: 1;
+		z-index: 3;
 		padding: 1rem;
+		height: fit-content;
 	}
 
 	.header::before {

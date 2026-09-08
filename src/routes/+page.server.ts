@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import strapi from '$lib/Strapi';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async () => {
     try {
         const recentBlogPosts = await strapi.getBlogPosts(3, true);
         return {
