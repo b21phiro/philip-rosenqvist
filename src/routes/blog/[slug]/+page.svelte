@@ -26,7 +26,7 @@
 
         <img
             class="hero-image"
-            src="http://localhost:1337{blogPost.featured_image.url}"
+            src="http://192.168.50.161:1337{blogPost.featured_image.url}"
             alt="{ blogPost.featured_image.alternativeText ?? blogPost.title ?? 'Unknown' }"
         />
 

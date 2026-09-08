@@ -6,6 +6,8 @@
 
 	let { children } = $props();
 
+	let hasScrolledALittle = $state(false);
+
 </script>
 
 <svelte:head>
@@ -22,7 +24,7 @@
 
 </svelte:head>
 
-<header class="header">
+<header class="header { hasScrolledALittle ? 'has-scrolled' : '' }">
 
 	<div class="site-wrapper header-wrapper">
 
@@ -53,6 +55,8 @@
 	{@render children()}
 </main>
 
+<svelte:window on:scroll={() => { hasScrolledALittle = window.scrollY > 250 }} />
+
 <style>
 
 	.header {
@@ -61,6 +65,7 @@
 		z-index: 3;
 		padding: 1rem;
 		height: fit-content;
+		transition: background-color .5s ease-in;
 	}
 
 	.header::before {
@@ -73,6 +78,10 @@
 		z-index: 10;
 	}
 
+	.has-scrolled.header {
+		background-color: #070000;
+	}
+
 	.header-wrapper {
 		display: flex;
 		align-items: center;
@@ -82,6 +91,10 @@
 	.logo {
 		display: inline-block;
 		height: 4rem;
+	}
+
+	.has-scrolled .logo {
+		height: 2rem;
 	}
 
 	.logo svg {

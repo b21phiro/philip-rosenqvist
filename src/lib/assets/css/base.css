@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 html {
     background-color: #0D0101;
 }

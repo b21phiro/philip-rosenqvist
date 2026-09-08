@@ -149,7 +149,7 @@
                         <h3 class="blog-post-card--title">{blogPost.title}</h3>
                         <figure class="blog-post-card--figure">
                             <img class="blog-post-card--figure--img"
-                                 src="http://localhost:1337{blogPost.featured_image.url}"
+                                 src="http://192.168.50.161:1337{blogPost.featured_image.url}"
                                  alt="{blogPost.featured_image.alternativeText || blogPost.title}" />
                         </figure>
                         <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
