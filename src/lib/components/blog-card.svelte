@@ -1,5 +1,7 @@
 <script lang="ts">
 
+    import {prettyDateString} from "$lib/utils/date";
+
     let { blogPost } = $props();
 
 
@@ -19,7 +21,7 @@
                     <li class="blog-card--content--top--tags--tag">{ tag.name }</li>
                 {/each}
             </ul>
-            <p class="blog-card--content--top--date">2026/06/06</p>
+            <p class="blog-card--content--top--date">{ prettyDateString(blogPost.publishedAt) }</p>
         </div>
         <h3 class="blog-card--content--title">{blogPost.title}</h3>
     </div>
@@ -34,6 +36,7 @@
         overflow: hidden;
         background-color: #151515;
         padding-bottom: 1rem;
+        min-width: 16rem;
     }
 
     .blog-ard--anchor {

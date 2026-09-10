@@ -1,20 +1,9 @@
 <script lang="ts">
-
+    import { prettyDateString } from "$lib/utils/date";
     let { data } = $props();
 
     let blogPost = $derived(data?.blogPost?.data[0] ?? undefined);
     let error = $derived(data.error);
-
-    let uploadDatePretty = $derived(() => {
-        if (!blogPost) return "[ Unknown date ]";
-        const date = new Date(blogPost?.publishedAt);
-        const year = date.getFullYear();
-        const month = (date.getMonth() < 10) ? "0" + date.getMonth() : date.getMonth();
-        const day = (date.getDay() < 10) ? "0" + date.getDay() : date.getDay();
-        return year + "/" + month + "/" + day;
-    });
-
-    console.log(blogPost);
 
 </script>
 
@@ -33,7 +22,7 @@
         <section class="hero-section">
             <div class="blog-content-wrapper">
                 <h1 class="hero-title">{ blogPost.title }</h1>
-                <p>{ uploadDatePretty() }</p>
+                <p>{ prettyDateString(blogPost.publishedAt) }</p>
             </div>
         </section>
 
