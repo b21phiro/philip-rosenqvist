@@ -39,6 +39,11 @@
         min-width: 16rem;
     }
 
+    .blog-card:hover {
+        outline-offset: 0.5rem;
+        outline: #981213 solid 0.125rem;
+    }
+
     .blog-ard--anchor {
         position: absolute;
         display: block;

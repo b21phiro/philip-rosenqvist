@@ -113,7 +113,7 @@
 
         <h2 class="large-title text-neon">I'm Philip</h2>
 
-        <h3>I’m a software developer based in Stockholm, Sweden.</h3>
+        <h3 class="sub-title">I’m a software developer based in Stockholm, Sweden.</h3>
 
         <p class="text">I like creating things that are either usefull, fun or make people feel *something*</p>
 
@@ -219,6 +219,10 @@
         margin: 0;
     }
 
+    .sub-title {
+        font-size: 1.5rem;
+    }
+
     .text-neon {
         color: #981213;
         text-shadow: 0 0 8px #981213, 0 0 16px #500506;
@@ -291,6 +295,10 @@
         .section,
         .blog-post-grid {
             gap: 4rem;
+        }
+
+        .sub-title {
+            font-size: 2rem;
         }
 
     }
