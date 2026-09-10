@@ -141,7 +141,7 @@
 
         <h2 class="section-title">Latest from my blog</h2>
 
-        <div class="blog-post-grid">
+        <div class="grid">
             {#if blogPosts.length > 0 }
                 {#each blogPosts as blogPost}
                     <BlogPostCard blogPost={blogPost} />
@@ -262,10 +262,10 @@
         object-fit: contain;
     }
 
-    .blog-post-grid {
+    .grid {
         display: flex;
+        gap: 2rem;
         flex-wrap: wrap;
-        gap: 1rem;
     }
 
     @media only screen and (min-width: 700px) {

@@ -1,78 +1,95 @@
 <script lang="ts">
 
-    import { MoveRightIcon } from "@lucide/svelte";
-
     let { blogPost } = $props();
+
+
 
 </script>
 
-<article class="blog-post-card">
-    <a class="blog-post-card--link" href="/blog/{blogPost.slug}" title="Read {blogPost.title}"></a>
-    <h3 class="blog-post-card--title">{blogPost.title}</h3>
-    <figure class="blog-post-card--figure">
-        <img class="blog-post-card--figure--img"
-             src="http://192.168.50.161:1337{blogPost.featured_image.url}"
-             alt="{blogPost.featured_image.alternativeText || blogPost.title}" />
-    </figure>
-    <span class="blog-post-card--controller">Read <MoveRightIcon aria-hidden="true" /></span>
+<article class="blog-card">
+    <a class="blog-ard--anchor" href="/blog/{blogPost.slug}" title="Read {blogPost.title}"></a>
+    <img class="blog-card--image"
+         src="http://192.168.50.161:1337{blogPost.featured_image.url}"
+         alt="{blogPost.featured_image.alternativeText || blogPost.title}"
+    />
+    <div class="blog-card--content">
+        <div class="blog-card--content--top">
+            <ul class="blog-card--content--top--tags">
+                {#each blogPost.tags as tag}
+                    <li class="blog-card--content--top--tags--tag">{ tag.name }</li>
+                {/each}
+            </ul>
+            <p class="blog-card--content--top--date">2026/06/06</p>
+        </div>
+        <h3 class="blog-card--content--title">{blogPost.title}</h3>
+    </div>
 </article>
 
 <style>
 
-    .blog-post-card {
+    .blog-card {
         position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        min-width: 18rem;
         flex: 1;
-        max-width: 38rem;
+        border-radius: .0625rem;
+        overflow: hidden;
+        background-color: #151515;
+        padding-bottom: 1rem;
     }
 
-    .blog-post-card--title {
-        font-size: 1.5rem;
-        font-weight: normal;
-        margin: 0;
-    }
-
-    .blog-post-card--link {
+    .blog-ard--anchor {
         position: absolute;
-        inset: 0;
         display: block;
+        inset: 0;
         width: 100%;
         height: 100%;
         z-index: 1;
     }
 
-    .blog-post-card--link:hover ~ .blog-post-card--controller {
-        text-decoration: underline;
-    }
-
-    .blog-post-card--figure {
-        position: relative;
-        aspect-ratio: 1;
-        margin: 0;
-        padding: 0;
-    }
-
-    .blog-post-card--figure--img {
-        position: absolute;
-        inset: 0;
+    .blog-card--image {
+        max-width: 100%;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        aspect-ratio: 4 / 3;
         object-position: center center;
+        object-fit: cover;
         display: block;
     }
 
-    .blog-post-card--controller {
-        font-size: 1rem;
-        color: #D8CDCA;
-        display: inline-flex;
+    .blog-card--content {
+        padding: 1rem;
+    }
+
+    .blog-card--content--title {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .blog-card--content--top {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .blog-card--content--top--date {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .blog-card--content--top--tags {
+        display: flex;
         gap: 0.5rem;
-        margin-left: auto;
+        list-style: none;
+        padding: 0;
+    }
+
+    .blog-card--content--top--tags--tag {
+        font-size: .875rem;
+        font-weight: 900;
+        border: .125rem solid #981213;
+        padding: .25rem 1rem;
+        color: #EA0708;
+        text-transform: uppercase;
+        border-radius: .0625rem;
     }
 
 </style>
