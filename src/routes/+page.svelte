@@ -107,28 +107,32 @@
 
 <!-- Little about me -->
 
-<section class="about-me site-wrapper">
+<section class="about-me">
 
-    <div class="col">
+    <div class="section site-wrapper">
 
-        <h2 class="large-title text-neon">I'm Philip</h2>
+        <div class="col">
 
-        <h3 class="sub-title">I’m a software developer based in Stockholm, Sweden.</h3>
+            <h2 class="large-title text-neon">I'm Philip</h2>
 
-        <p class="text">I like creating things that are either usefull, fun or make people feel *something*</p>
+            <h3 class="sub-title">I’m a software developer based in Stockholm, Sweden.</h3>
 
-        <p class="text">
-            Right now I’m developing my own game in C++ on the free-time. Don’t worry, it’s about running a café.
-            Yes, a normal café. If you’re interested in following the process from the beginning til the inevitable end,
-            check out my blog.
-        </p>
+            <p class="text">I like creating things that are either usefull, fun or make people feel *something*</p>
 
-    </div>
+            <p class="text">
+                Right now I’m developing my own game in C++ on the free-time. Don’t worry, it’s about running a café.
+                Yes, a normal café. If you’re interested in following the process from the beginning til the inevitable end,
+                check out my blog.
+            </p>
 
-    <div class="col">
-        <figure class="figure">
-            <img src="/images/me.png" alt="I like to wear black clothing, sometimes a black cap." />
-        </figure>
+        </div>
+
+        <div class="col">
+            <figure class="figure">
+                <img src="/images/me.png" alt="I like to wear black clothing, sometimes a black cap." />
+            </figure>
+        </div>
+
     </div>
 
 </section>
@@ -165,8 +169,21 @@
         height: 100vh;
     }
 
-    .recently-from-blog {
-        background-color: #070000;
+    .about-me {
+        position: relative;
+        width: 100%;
+        background-color: #0D0101;
+    }
+
+    .about-me::before {
+        background: url("/images/splatter-2.png");
+        bottom: 0;
+        z-index: 0;
+    }
+
+    .about-me .section {
+        position: relative;
+        z-index: 1;
     }
 
     .section {
@@ -190,14 +207,8 @@
         bottom: 0;
     }
 
-    .recently-from-blog::after {
-        background: url("/images/splatter-2.png");
-        bottom: 100%;
-        z-index: -1;
-    }
-
     .hero::after,
-    .recently-from-blog::after {
+    .about-me::before {
         content: "";
         position: absolute;
         width: 100%;
@@ -226,14 +237,6 @@
     .text-neon {
         color: #981213;
         text-shadow: 0 0 8px #981213, 0 0 16px #500506;
-    }
-
-    .about-me {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 2rem 1rem;
-        max-width: 1280px;
     }
 
     .col {
@@ -274,12 +277,6 @@
 
     @media only screen and (min-width: 700px) {
 
-        .about-me {
-            flex-direction: row-reverse;
-            align-items: center;
-            gap: 4rem;
-        }
-
         .large-title {
             font-size: 6rem;
         }
@@ -292,13 +289,17 @@
             padding-block: 4rem;
         }
 
-        .section,
-        .blog-post-grid {
+        .section {
             gap: 4rem;
         }
 
         .sub-title {
             font-size: 2rem;
+        }
+
+        .about-me .section {
+            flex-direction: row-reverse;
+            align-items: center;
         }
 
     }
