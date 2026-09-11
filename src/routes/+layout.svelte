@@ -120,16 +120,37 @@
 
 	.header-nav-link {
 		text-decoration: none;
-		min-width: 3.75rem;
+		min-width: 5.125rem;
 	}
 
 	.header-nav-link {
+		position: relative;
 		font-size: 1rem;
 		display: inline-flex;
 		min-height: 3rem;
 		justify-content: center;
 		align-items: center;
 		font-weight: 900;
+	}
+
+	.header-nav-link::before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 2rem;
+		border: 0.125rem solid transparent;
+		border-radius: 0.0625rem;
+		position: absolute;
+		left: 0;
+		z-index: 10;
+	}
+
+	.header-nav-link[aria-current="true"] {
+		color: #EA0708;
+	}
+
+	.header-nav-link[aria-current="true"]::before {
+		border-color: #981213;
 	}
 
 </style>
