@@ -36,18 +36,6 @@
 
 <style>
 
-    .site {
-        padding: 4rem 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .site-title {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-    }
-
     .grid {
         display: flex;
         flex-direction: column;
