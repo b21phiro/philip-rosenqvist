@@ -9,21 +9,26 @@
 </script>
 
 <article class="blog-card">
-    <a class="blog-ard--anchor" href="/blog/{blogPost.slug}" title="Read {blogPost.title}"></a>
+    <a class="blog-ard--anchor" href="/blog/{ blogPost.slug }" title="Read { blogPost.title }"></a>
     <img class="blog-card--image"
-         src="http://192.168.50.161:1337{blogPost.featured_image.url}"
-         alt="{blogPost.featured_image.alternativeText || blogPost.title}"
+         src="http://192.168.50.161:1337{ blogPost.featured_image.url }"
+         alt="{ blogPost.featured_image.alternativeText || blogPost.title }"
     />
     <div class="blog-card--content">
         <div class="blog-card--content--top">
             <ul class="blog-card--content--top--tags">
-                {#each blogPost.tags as tag}
-                    <li class="blog-card--content--top--tags--tag">{ tag.name }</li>
-                {/each}
+                {#if blogPost.tags.length > 0}
+                    {#each blogPost.tags as tag}
+                        <li class="blog-card--content--top--tags--tag">{ tag.name }</li>
+                    {/each}
+                {:else}
+                    <li class="blog-card--content--top--tags--tag">Blog</li>
+                {/if}
+
             </ul>
             <p class="blog-card--content--top--date">{ prettyDateString(blogPost.publishedAt) }</p>
         </div>
-        <h3 class="blog-card--content--title">{blogPost.title}</h3>
+        <h3 class="blog-card--content--title">{ blogPost.title }</h3>
     </div>
 </article>
 
@@ -88,6 +93,9 @@
         gap: 0.5rem;
         list-style: none;
         padding: 0;
+        min-width: 0;
+        overflow-x: clip;
+        margin-right: .5rem;
     }
 
     .blog-card--content--top--tags--tag {
@@ -98,6 +106,8 @@
         color: #EA0708;
         text-transform: uppercase;
         border-radius: .0625rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
 </style>

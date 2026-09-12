@@ -7,9 +7,6 @@
         routes = []
     } = $props();
 
-    console.log("Routes: ", routes);
-    console.log("Page URL pathname: ", page.url.pathname);
-
 </script>
 
 <button

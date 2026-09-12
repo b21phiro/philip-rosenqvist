@@ -5,6 +5,7 @@
 	import '$lib/assets/css/states.css';
 	import MobileMenu from '$lib/components/mobile-menu.svelte';
 	import {page} from "$app/state";
+	import {onMount} from "svelte";
 
 	let { children } = $props();
 	let hasScrolledALittle = $state(false);
@@ -15,6 +16,10 @@
 		{ href: "/blog", text: "Blog" },
 		{ href: "/contact", text: "Contact" }
 	]);
+
+	onMount(() => {
+		hasScrolledALittle = window.scrollY > 50;
+	});
 
 </script>
 
@@ -63,7 +68,7 @@
 	{@render children()}
 </main>
 
-<svelte:window on:scroll={() => { hasScrolledALittle = window.scrollY > 250 }} />
+<svelte:window on:scroll={() => { hasScrolledALittle = window.scrollY > 50 }} />
 
 <style>
 
