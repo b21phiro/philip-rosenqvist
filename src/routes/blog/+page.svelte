@@ -27,7 +27,9 @@
     </div>
 
     <div class="site-wrapper">
-        <Pagination bind:pagination={pagination} />
+        {#if pagination.pageCount > 1}
+            <Pagination bind:pagination={pagination} />
+        {/if}
     </div>
 
 </div>
@@ -47,9 +49,8 @@
     }
 
     .grid {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
     }
 
@@ -61,9 +62,21 @@
         }
 
         .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+    }
+
+    @media only screen and (min-width: 64rem) {
+
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
             gap: 4rem;
         }
 
     }
+
 
 </style>

@@ -15,7 +15,7 @@ export const load: PageServerLoad = async ({ url }) => {
     }
 
     try {
-        const blogPosts = await strapi.getBlogPosts(12, true, page);
+        const blogPosts = await strapi.getBlogPosts(25, true, page);
         return {
             blogPosts: blogPosts.data ?? [],
             blogMeta: blogPosts.meta ?? {},
