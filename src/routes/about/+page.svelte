@@ -2,6 +2,12 @@
 
     import { ExternalLinkIcon } from '@lucide/svelte';
 
+    function myAge(year: number, month: number, day: number) {
+        const today = new Date();
+        const then = new Date(year, month, day);
+        return today.getFullYear() - then.getFullYear();
+    }
+
 </script>
 
 <div class="site">
@@ -11,7 +17,7 @@
         <h1 class="site-title">About me</h1>
 
         <p>
-            Hello, my name is Philip Rosenqvist. I’m 28 years old and live in Stockholm. I’ve been coding since 2018,
+            Hello, my name is Philip Rosenqvist. I’m { myAge(1997, 12, 5) } years old and live in Stockholm. I’ve been coding since 2018,
             got my bachelor’s degree in 2024, and began working professionally in 2025,
             although I did freelance work during my studies.
         </p>
