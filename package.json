@@ -23,6 +23,7 @@
 	"dependencies": {
 		"@lucide/svelte": "^1.42.0",
 		"@types/three": "^0.185.4",
+		"nodemailer": "^10.0.10",
 		"three": "^0.185.1"
 	}
 }
