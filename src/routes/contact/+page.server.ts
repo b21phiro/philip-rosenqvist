@@ -30,8 +30,7 @@ export const actions = {
             !validateEmpty(fromEmail) ||
             !validateEmpty(fromMessage)
         ) {
-            console.log(`[ Error : sendEmail ]:   Failed validation`);
-
+            console.log(`[ Error : sendEmail ]:   Failed validation due to missing fields`);
             return fail(400, {
                 error: "Missing fields",
                 firstname: fromFirstname,
@@ -42,6 +41,7 @@ export const actions = {
         }
 
         if (!validateEmail(fromEmail)) {
+            console.log(`[ Error : sendEmail ]:   Failed validation due to invalid email`);
             return fail(400, {
                 error: "Invalid email",
                 firstname: fromFirstname,

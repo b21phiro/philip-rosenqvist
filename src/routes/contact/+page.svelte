@@ -1,9 +1,16 @@
 <script lang="ts">
 
-    import { MailIcon, SmartphoneIcon, MapPinIcon, SendHorizontalIcon } from '@lucide/svelte';
+    import {
+        MailIcon,
+        SmartphoneIcon,
+        MapPinIcon,
+        SendHorizontalIcon,
+        LoaderCircleIcon,
+        CircleAlertIcon,
+        ThumbsUpIcon,
+    } from '@lucide/svelte';
     import { enhance } from "$app/forms";
     import type { PageProps } from './$types';
-    import {onMount} from "svelte";
 
     let { form }: PageProps = $props();
 
@@ -11,11 +18,15 @@
     const contactPhoneNumber = `${import.meta.env.VITE_PHONE_COUNTRY_CODE} ${import.meta.env.VITE_PHONE_NUMBER}`;
     const address =`${ import.meta.env.VITE_CITY }, ${ import.meta.env.VITE_DISTRICT }`;
 
-    let emailInputValue = $state("philip.rosenqvist@outlook.com");
-    let firstnameInputValue = $state("Philip");
-    let surnameInputValue = $state("Rosenqvist");
+    let emailInputValue = $state();
+    let firstnameInputValue = $state();
+    let surnameInputValue = $state();
 
     let messageInput: HTMLTextAreaElement | undefined = $state();
+
+    let isSending = $state(false);
+    let error = $state();
+    let success = $state();
 
     function resizeMessageInput() {
         if (!messageInput) return;
@@ -23,9 +34,14 @@
         messageInput.style.height = `${ messageInput.scrollHeight }px`;
     }
 
-    onMount(() => {
-        messageInput!.value = "Lorem Ipsum, detta blir ett fint testmeddelande att skicka till däg.\nMvh Mormor.";
-    })
+    function clearAllFields() {
+        emailInputValue = "";
+        firstnameInputValue = "";
+        surnameInputValue = "";
+        if (messageInput) {
+            messageInput.value = "";
+        }
+    }
 
 </script>
 
@@ -36,7 +52,25 @@
         <form
             class="form"
             action="?/sendEmail"
-            use:enhance
+            use:enhance={() => {
+                isSending = true;
+                return async ({ result }) => {
+                    isSending = false;
+                    success = null;
+                    if (result.type === "failure") {
+                        error = result.data!.error;
+                        firstnameInputValue = result.data!.firstname;
+                        surnameInputValue = result.data!.surname;
+                        emailInputValue = result.data!.email;
+                        // @ts-ignore
+                        messageInput.value = result.data!.message;
+                        return;
+                    }
+                    error = null;
+                    success = true;
+                    clearAllFields();
+                }
+            }}
             method="POST"
         >
 
@@ -64,9 +98,39 @@
                 </div>
             </div>
 
+            {#if error}
+                <div class="error-sign">
+                    <div class="sign--col">
+                        <CircleAlertIcon aria-hidden="true" />
+                    </div>
+                    <div class="sign--col">
+                        {#if error === "Missing fields"}
+                            <h4>You missed some fields</h4>
+                            <p>You need to fill all the fields below.</p>
+                        {:else if (error === "Invalid email")}
+                            <h4>Invalid email</h4>
+                            <p>Please enter a valid email address.</p>
+                        {:else}
+                            <h4>Failed to send email</h4>
+                            <p>An error occurred while sending the email. Please try again later.</p>
+                        {/if}
+                    </div>
+                </div>
+                {:else if success}
+                <div class="success-sign">
+                    <div class="sign--col">
+                        <ThumbsUpIcon aria-hidden="true" />
+                    </div>
+                    <div class="sign--col">
+                        <h4>Email sent successfully</h4>
+                        <p>Thank you! I will respond ASAP.</p>
+                    </div>
+                </div>
+            {/if}
+
             <fieldset class="fieldset">
 
-                <div class="field">
+                <div class="field {error && error === "Missing fields" && !firstnameInputValue ? "invalid" : ""}">
                     <label class="label" for="firstname">Your firstname:</label>
                     <input class="input"
                            id="firstname"
@@ -76,7 +140,7 @@
                     />
                 </div>
 
-                <div class="field">
+                <div class="field {error && error === "Missing fields" && !surnameInputValue ? "invalid" : ""}">
                     <label class="label" for="surname">Your surname:</label>
                     <input class="input"
                            id="surname"
@@ -86,25 +150,25 @@
                     />
                 </div>
 
-                <div class="field">
+                <div class="field {error && ((error === "Missing fields" && !emailInputValue) || error === "Invalid email") ? "invalid" : ""}">
                     <label class="label" for="email">Your email:</label>
                     <input class="input"
                            id="email"
-                           type="email"
+                           type="text"
                            name="email"
                            bind:value={emailInputValue}
                     />
                 </div>
 
-                <div class="field message-field">
+                <div class="field message-field {error && error === "Missing fields" && !messageInput?.value ? "invalid" : ""}">
                     <label class="label" for="message">Your message:</label>
                     <textarea
                             bind:this={messageInput}
                             oninput={resizeMessageInput}
                             id="message"
                             name="message"
-                            class="input">
-                    </textarea>
+                            class="input"
+                    ></textarea>
                 </div>
 
             </fieldset>
@@ -112,12 +176,18 @@
             <div class="form-footer">
 
                 <label for="send-message-button" class="button">
-                    Send mail
-                    <SendHorizontalIcon aria-hidden="true" size="18" />
+                    {#if isSending}
+                        Sending mail...
+                        <LoaderCircleIcon aria-hidden="true" size="18" />
+                    {:else}
+                        Send mail
+                        <SendHorizontalIcon aria-hidden="true" size="18" />
+                    {/if}
                 </label>
                 <input id="send-message-button"
                        class="hidden"
                        type="submit"
+                       disabled={ isSending }
                 />
 
             </div>
@@ -205,6 +275,43 @@
         align-items: center;
         padding-left: 1rem;
         border-top: 0.125rem solid #151515;
+    }
+
+    .error-sign,
+    .success-sign {
+        border: .125rem solid #EAE0D9;
+        margin: .5rem;
+        padding: .5rem;
+        stroke: #EAE0D9;
+        color: #EAE0D9;
+        display: flex;
+        gap: .5rem;
+    }
+
+    .error-sign {
+        border-color: #500506;
+        stroke: #500506;
+    }
+
+    .success-sign {
+        border-color: #187c44;
+        stroke: #17bf63;
+    }
+
+    .sign--col:nth-child(2) {
+        padding-top: .25rem;
+    }
+
+    .sign--col > * {
+        margin: 0 0 .5rem 0;
+    }
+
+    :global(.error-sign svg) {
+        stroke: #ed1b1c;
+    }
+
+    .field.invalid .label {
+        color: #ed1b1c;
     }
 
     .field:focus-within {
