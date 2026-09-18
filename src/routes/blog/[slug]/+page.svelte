@@ -5,6 +5,17 @@
     let blogPost = $derived(data?.blogPost?.data[0] ?? undefined);
     let error = $derived(data.error);
 
+    let title = $derived(blogPost?.title ?? "Unknown");
+    let uploadDate = $derived(prettyDateString(blogPost.publishedAt));
+    let keywords = $derived(() => {
+        const tags = blogPost?.tags ?? [];
+        if (tags.length > 0) {
+            return tags.map(({ name }: { name: string }) => name).join(", ");
+        }
+        return "Blog post";
+    });
+    console.log();
+
 </script>
 
 {#if error || !blogPost}
@@ -21,8 +32,8 @@
 
         <section class="hero-section">
             <div class="blog-content-wrapper">
-                <h1 class="hero-title">{ blogPost.title }</h1>
-                <p>{ prettyDateString(blogPost.publishedAt) }</p>
+                <h1 class="hero-title">{ title }</h1>
+                <p>{ uploadDate }</p>
             </div>
         </section>
 
@@ -47,6 +58,17 @@
     </div>
 
 {/if}
+
+<svelte:head>
+    <title>{ title } {uploadDate} - Philip Rosenqvist</title>
+    <meta
+        name="description"
+        content="My name is Philip Rosenqvist and I'm a software developer. This is a blog post written {uploadDate} with the title: {title}."
+    >
+    <meta name="keywords" content={ keywords() }>
+    <meta name="author" content="Philip Rosenqvist">
+    <meta name="date" content={ uploadDate }>
+</svelte:head>
 
 <style>
 

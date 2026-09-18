@@ -16,9 +16,6 @@ class Strapi {
     }
 
     async getBlogPosts(limit: number = 12, latest: boolean = false, page: number = 1) {
-
-        // http://localhost:1337/api/{contentType}?pagination[page]=2&pagination[pageSize]=9
-
         const qs = `?populate=*&pagination[page]=${page}&pagination[pageSize]=${limit}&sort=publishedAt:${latest ? 'desc' : 'asc'}`;
         const url = `${this.protocol}://${this.host}:${this.port}/api/blog-posts${qs}`;
         const response = await fetch(url, {

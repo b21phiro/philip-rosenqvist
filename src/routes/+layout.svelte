@@ -18,7 +18,6 @@
 		{ href: "/contact", text: "Contact" }
 	]);
 
-
 	onMount(() => {
 		hasScrolledALittle = window.scrollY > 50;
 	});

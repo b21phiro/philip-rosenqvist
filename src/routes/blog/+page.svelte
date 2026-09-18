@@ -2,10 +2,20 @@
     import BlogCard from '$lib/components/blog-card.svelte';
     import Pagination from '$lib/components/pagination.svelte';
 
-
     let { data } = $props();
     let blogPosts = $derived(data.blogPosts ?? []);
     let pagination = $derived(data.blogMeta.pagination ?? {});
+
+    let paginationTitle = $state("");
+    let totalPages = $derived(pagination.pageCount);
+
+    $effect(() => {
+        if (pagination.page > 1) {
+            paginationTitle =  ` (page ${pagination.page.toString()} of ${totalPages.toString()}) `;
+        } else {
+            paginationTitle = "";
+        }
+    });
 
 </script>
 
@@ -33,6 +43,14 @@
     </div>
 
 </div>
+
+<svelte:head>
+    <title>Blog { paginationTitle }- Philip Rosenqvist</title>
+    <meta
+        name="description"
+        content="Blog posts written by me, Philip Rosenqvist. I currently write a lot about the development of my own game, Cafe Moi"
+    >
+</svelte:head>
 
 <style>
 

@@ -198,6 +198,14 @@
 
 </div>
 
+<svelte:head>
+    <title>Get in touch - Philip Rosenqvist</title>
+    <meta
+        name="description"
+        content="My name is Philip Rosenqvist and I'm a software developer. You can contact me through mail or phone. This page also contains a form if you want to get in touch quickly!"
+    >
+</svelte:head>
+
 <style>
 
     .figure {

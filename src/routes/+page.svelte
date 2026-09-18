@@ -160,6 +160,14 @@
 
 </section>
 
+<svelte:head>
+    <title>Home - Philip Rosenqvist</title>
+    <meta
+        name="description"
+        content="Hello, my name is Philip Rosenqvist. I'm a software developer, and I'm currently developing my own game: Cafe Moi. You can find my blog here in which I write about the development of the game."
+    >
+</svelte:head>
+
 <svelte:window on:resize={() => resizeCanvas()} />
 
 <style>

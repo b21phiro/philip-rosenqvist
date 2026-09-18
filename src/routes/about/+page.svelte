@@ -133,6 +133,14 @@ import { ExternalLinkIcon } from '@lucide/svelte';
 
 </div>
 
+<svelte:head>
+    <title>About me - Philip Rosenqvist</title>
+    <meta
+        name="description"
+        content="My name is Philip Rosenqvist and I'm a software developer. This page is about who I am, and why I'm into this line of work."
+    >
+</svelte:head>
+
 <style>
     .text-wrapper {
         max-width: 40rem;

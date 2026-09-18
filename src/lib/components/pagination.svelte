@@ -29,10 +29,8 @@
     let firstPage = 1;
     let currentPage = $derived(pagination.page);
     let lastPage = $derived(pagination.pageCount);
-
     let isFirstPage = $derived(currentPage === firstPage);
     let isLastPage = $derived(currentPage === lastPage);
-    let isCurrentPage = $derived((pageNumber: number) => currentPage === pageNumber);
 
     let deviceWidth = $state(0);
     let deviceSizeType = $derived(() => {
