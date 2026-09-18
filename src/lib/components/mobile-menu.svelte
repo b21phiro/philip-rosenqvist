@@ -1,4 +1,4 @@
-<script lang="js">
+<script lang="ts">
     import { page } from "$app/state";
     import { XIcon, MenuIcon, ArrowRightIcon } from '@lucide/svelte';
 
