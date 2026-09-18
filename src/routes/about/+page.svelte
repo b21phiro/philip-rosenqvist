@@ -1,6 +1,7 @@
 <script lang="ts">
 
-    import { ExternalLinkIcon } from '@lucide/svelte';
+    import ExternalInlineLink from '$lib/components/external-inline-link.svelte';
+import { ExternalLinkIcon } from '@lucide/svelte';
 
     function myAge(year: number, month: number, day: number) {
         const today = new Date();
@@ -36,12 +37,10 @@
 
         <p>
             When I was 10 years old, there was this game called
-            <a href="https://littlebigplanet.fandom.com/wiki/LittleBigPlanet">Little Big Planet
-                <ExternalLinkIcon size="16" aria-hidden="true" />
-            </a>, developed by the original team at
-            <a href="https://www.mediamolecule.com/">
-                Media Molecule <ExternalLinkIcon size="16" aria-hidden="true" />
-            </a>. In short, the game was about creating things by designing platform games, puzzles,
+            <ExternalInlineLink href="https://littlebigplanet.fandom.com/wiki/LittleBigPlanet" text="Little Big Planet" />
+            , developed by the original team at
+            <ExternalInlineLink href="https://www.mediamolecule.com/" text="Media Molecule" />.
+            In short, the game was about creating things by designing platform games, puzzles,
             and really anything you could come up with. Media Molecule encouraged their players to be creative.
             I was hooked.
         </p>
@@ -125,10 +124,9 @@
 
         <p>
             So, I picked up Programming: Principles and Practice Using C++ by
-            <a href="https://www.stroustrup.com/">
-                Bjarne Stroustrup <ExternalLinkIcon size="18" />
-            </a> and began learning C++.
-            I then started practising pixel art, and I’m now finally ready to develop my own game.
+            <ExternalInlineLink href="https://www.stroustrup.com/" text="Bjarne Stroustrup" />
+            and began learning C++. I then started practising pixel art, and I’m now finally ready to
+            develop my own game.
         </p>
 
     </div>
