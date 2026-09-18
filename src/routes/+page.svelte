@@ -3,6 +3,7 @@
     import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
     import { onMount } from "svelte";
     import BlogPostCard from '$lib/components/blog-card.svelte';
+    import TvTestImage from '$lib/assets/images/test-image.png';
 
     let { data } = $props();
     let blogPosts = $derived(data.recentBlogPosts ?? []);
@@ -13,6 +14,8 @@
     let renderer: THREE.WebGLRenderer;
     let scene: THREE.Scene;
     let camera: THREE.PerspectiveCamera;
+
+    let isLoadingScene = $state(true);
 
     let canvasAspectRatio = $derived(() => {
        return renderer.domElement.width / renderer.domElement.height;
@@ -31,6 +34,7 @@
 
     function loadGltfModel(path: string): Promise<GLTF> {
         const loader = new GLTFLoader();
+        isLoadingScene = true;
         return new Promise((res, rej) => {
             loader.loadAsync(path)
                 .then((gltf) => {
@@ -40,6 +44,9 @@
                     console.error("Error: failed to load GLTF\nPath:", path, "\nReason", err);
                     rej(err);
                 })
+                .finally(() => {
+                    isLoadingScene = false;
+                });
         });
     }
 
@@ -74,7 +81,7 @@
         camera.position.y = 0.6;
         camera.position.z = 6.0;
 
-        const light = new THREE.AmbientLight(0xffffff, 0.001);
+        const light = new THREE.AmbientLight(0xffffff, 0.05);
         scene.add(light);
 
         resizeCanvas();
@@ -100,6 +107,10 @@
 <div class="hero">
 
     <h1 class="is-hidden">Hello, you.</h1>
+
+    {#if isLoadingScene}
+        <img class="please-stand-by" src={TvTestImage} alt="Please stand by" />
+    {/if}
 
     <canvas bind:this={canvas}></canvas>
 
@@ -173,8 +184,19 @@
 <style>
 
     .hero {
+        position: relative;
         width: 100vw;
         height: 100vh;
+    }
+
+    .please-stand-by {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: .7;
+        object-position: center center;
+        object-fit: cover;
+        z-index: 1;
     }
 
     .about-me {
@@ -186,12 +208,11 @@
     .about-me::before {
         background: url("/images/splatter-2.png");
         bottom: 0;
-        z-index: 0;
     }
 
     .about-me .section {
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
 
     .section {
