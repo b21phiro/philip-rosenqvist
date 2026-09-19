@@ -1,0 +1,1 @@
+export const MediaURL = import.meta.env.VITE_MEDIA_URL ?? "";

@@ -1,17 +1,16 @@
 <script lang="ts">
 
-    import {prettyDateString} from "$lib/utils/date";
+    import { prettyDateString } from "$lib/utils/date";
+    import { MediaURL } from "$lib/config/strapi";
 
     let { blogPost } = $props();
-
-
 
 </script>
 
 <article class="blog-card">
     <a class="blog-ard--anchor" href="/blog/{ blogPost.slug }" title="Read { blogPost.title }"></a>
     <img class="blog-card--image"
-         src="http://192.168.50.161:1337{ blogPost.featured_image.url }"
+         src="{ MediaURL }{ blogPost.featured_image.url }"
          alt="{ blogPost.featured_image.alternativeText || blogPost.title }"
     />
     <div class="blog-card--content">

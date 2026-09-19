@@ -48,5 +48,5 @@ class Strapi {
 
 }
 
-const strapi = new Strapi(env.STRAPI_READ_ONLY_KEY ?? '', 'localhost', 1337, 'http');
+const strapi = new Strapi(env.STRAPI_READ_ONLY_KEY ?? '', 'strapi.philiprosenqvist.com', 443, 'https');
 export default strapi;

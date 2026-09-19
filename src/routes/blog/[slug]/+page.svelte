@@ -1,5 +1,8 @@
 <script lang="ts">
     import { prettyDateString } from "$lib/utils/date";
+    import { MediaURL } from "$lib/config/strapi";
+    import { ExternalLinkIcon } from "@lucide/svelte";
+
     let { data } = $props();
 
     let blogPost = $derived(data?.blogPost?.data[0] ?? undefined);
@@ -14,7 +17,6 @@
         }
         return "Blog post";
     });
-    console.log();
 
 </script>
 
@@ -26,7 +28,7 @@
 
         <img
             class="hero-image"
-            src="http://192.168.50.161:1337{blogPost.featured_image.url}"
+            src="{ MediaURL }{ blogPost.featured_image.url }"
             alt="{ blogPost.featured_image.alternativeText ?? blogPost.title ?? 'Unknown' }"
         />
 
@@ -43,14 +45,96 @@
 
         <section class="blog-content-wrapper">
 
-            {#each blogPost.content as content}
-                <div class="blog-content-block">
-                    {#if content.type === "paragraph"}
-                        {#each content.children as block}
-                            <p>{ block.text }</p>
-                        {/each}
+            {#each blogPost.content as block}
+                {#if block.type === "heading"}
+                    {#each block.children as child}
+                        {#if block.level === 1}
+                            <h1>{ child.text }</h1>
+                        {:else if block.level === 2}
+                            <h2>{ child.text }</h2>
+                        {:else if block.level === 3}
+                            <h3>{ child.text }</h3>
+                        {:else if block.level === 4}
+                            <h4>{ child.text }</h4>
+                        {:else if block.level === 5}
+                            <h5>{ child.text }</h5>
+                        {:else if block.level === 6}
+                            <h6>{ child.text }</h6>
+                        {/if}
+                    {/each}
+                {:else if block.type === "code"}
+                    <div class="code-block">
+                        <pre class="code-block--content" data-code-language="{ block.language ?? "unknown" }">{#each block.children as code }{#each code.text.split('\n') as line}<div class="code-block-line">{ line }</div>{/each}{/each}</pre>
+                        {#if block.language}
+                            <div class="code-block--footer">
+                                { block.language }
+                            </div>
+                        {/if}
+                    </div>
+                {:else if block.type === "image"}
+                    <figure class="figure">
+                        <img class="image"
+                             src="{ block.image.url }"
+                             alt="{ block.alternativeText ?? "" }"
+                        />
+                        {#if block.image.caption }
+                            <figcaption class="figcaption">
+                                { block.image.caption }
+                            </figcaption>
+                        {/if}
+                    </figure>
+                {:else if block.type === "paragraph"}
+                    <p>
+                    {#each block.children as child}
+                        {#if child.type === "link"}
+                            <a href="{ child.url }">
+                                {#each child.children as link}
+                                    <span
+                                        class="{link.bold ? "bold" : ""} {link.strikethrough ? "strikethrough" : ""} {link.underline ? "underline" : ""} {link.italic ? "italic" : ""}"
+                                    >
+                                        { link.text }
+                                    </span>
+                                {/each}
+                                <ExternalLinkIcon size="16" />
+                            </a>
+                        {:else if child.code}
+                            <code
+                                class="code {child.bold ? "bold" : ""} {child.strikethrough ? "strikethrough" : ""} {child.underline ? "underline" : ""} {child.italic ? "italic" : ""}"
+                            >
+                                { child.text }
+                            </code>
+                        {:else}
+                             <span
+                                 class="{child.bold ? "bold" : ""} {child.strikethrough ? "strikethrough" : ""} {child.underline ? "underline" : ""} {child.italic ? "italic" : ""}"
+                             >
+                                { child.text }
+                            </span>
+                        {/if}
+                    {/each}
+                    </p>
+                {:else if block.type === "list"}
+                    {#if block.format === "unordered"}
+                        <ul class="list">
+                            {#each block.children as child}
+                                {#if child.type === "list-item"}
+                                    {#each child.children as item}
+                                        <li class="list-item">{ item.text }</li>
+                                    {/each}
+                                {/if}
+                            {/each}
+                        </ul>
+                    {:else if block.format === "ordered"}
+                        <ol class="list">
+                            {#each block.children as child}
+                                {#if child.type === "list-item"}
+                                    {#each child.children as item}
+                                        <li class="list-item">{ item.text }</li>
+                                    {/each}
+                                {/if}
+                            {/each}
+                        </ol>
                     {/if}
-                </div>
+                {/if}
             {/each}
 
         </section>
@@ -83,9 +167,14 @@
         width: 100%;
     }
 
+    .blog-content .blog-content-wrapper > * {
+        margin: 0;
+    }
+
     .blog-content .blog-content-wrapper {
         display: flex;
         flex-direction: column;
+        gap: 2rem;
     }
 
     .hero {
@@ -133,6 +222,87 @@
         font-size: 2rem;
         font-weight: 900;
         margin: 0;
+    }
+
+    .bold {
+        font-weight: 900;
+    }
+
+    .strikethrough {
+        text-decoration: line-through !important;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .underline {
+        text-decoration: underline;
+    }
+
+    .list-item {
+        margin-block: .5rem;
+    }
+
+    .figure {
+        margin: 0;
+        width: 100%;
+        background-color: #0d0d0d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .image {
+        display: block;
+        max-width: 100%;
+    }
+
+    .code-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .code-block--content {
+        background-color: #0d0d0d;
+        padding: .5rem 1rem;
+        border-radius: .0625rem;
+        font-size: .875rem;
+        color: #EAE0D9;
+        margin: 0;
+    }
+
+    .code-block--footer {
+        background-color: #151515;
+        padding: .5rem;
+        color: #bab6b5;
+        font-size: 1rem;
+        text-transform: capitalize;
+    }
+
+    .code-block-line {
+        margin-block: .5rem;
+    }
+
+    .code {
+        background-color: #151515;
+        padding-inline: .5rem;
+        font-family: "Consolas", monospace;
+        border-radius: .0625rem;
+        color: #bab6b5;
+        font-size: .875rem;
+    }
+
+    .figcaption {
+        display: block;
+        background-color: #151515;
+        padding: .5rem;
+        font-size: .875rem;
+        color: #bab6b5;
+        line-height: 1.5;
+        width: 100%;
     }
 
     @media only screen and (min-width: 768px) {
