@@ -1,2 +1,1 @@
-# philip-rosenqvist
-Personal website for meeeeeee
+# My personal website, working on it heheheheheh

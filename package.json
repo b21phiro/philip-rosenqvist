@@ -1,20 +1,29 @@
 {
-  "name": "philip-rosenqvist",
-  "private": true,
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "typescript": "^5.5.3",
-    "vite": "^5.4.1"
-  },
-  "description": "My personal website",
-  "main": "index.js",
-  "repository": "https://github.com/b21phiro/philip-rosenqvist.git",
-  "author": "Philip Rosenqvist <philip.rosenqvist@outlook.com>",
-  "license": "MIT"
+	"name": "my-app",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.63.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.16"
+	},
+	"dependencies": {
+		"@lucide/svelte": "^1.42.0",
+		"@types/three": "^0.185.4",
+		"nodemailer": "^10.0.10",
+		"three": "^0.185.1"
+	}
 }

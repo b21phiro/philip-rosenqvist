@@ -1,0 +1,57 @@
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree/Figtree-VariableFont_wght.ttf") format("truetype");
+    font-optical-sizing: auto;
+    font-weight: 300 900;
+    font-style: normal;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    background-color: #070000;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, button {
+    color: #EAE0D9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+svg,
+svg path {
+    stroke: #EAE0D9;
+}
+
+img, canvas {
+    display: block;
+}
+
+html, button {
+    font-family: "Figtree", sans-serif;
+}
+
+body {
+    margin: 0;
+}

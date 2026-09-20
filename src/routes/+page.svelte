@@ -1,0 +1,350 @@
+<script lang="ts">
+    import * as THREE from 'three';
+    import { GLTFLoader, type GLTF } from 'three/addons/loaders/GLTFLoader.js';
+    import { onMount } from "svelte";
+    import BlogPostCard from '$lib/components/blog-card.svelte';
+    import TvTestImage from '$lib/assets/images/test-image.png';
+
+    let { data } = $props();
+    let blogPosts = $derived(data.recentBlogPosts ?? []);
+
+    let canvas = $state<HTMLElement>();
+    let hero = $derived(canvas?.parentElement);
+
+    let renderer: THREE.WebGLRenderer;
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+
+    let isLoadingScene = $state(true);
+
+    let canvasAspectRatio = $derived(() => {
+       return renderer.domElement.width / renderer.domElement.height;
+    });
+
+    function resizeCanvas() {
+        if (!hero) return;
+        const css = getComputedStyle(hero);
+        const width = parseInt(css.width);
+        const height = parseInt(css.height);
+        renderer.setSize(width, height);
+        camera.aspect = canvasAspectRatio();
+        camera.fov = 45;
+        camera.updateProjectionMatrix();
+    }
+
+    function loadGltfModel(path: string): Promise<GLTF> {
+        const loader = new GLTFLoader();
+        isLoadingScene = true;
+        return new Promise((res, rej) => {
+            loader.loadAsync(path)
+                .then((gltf) => {
+                    res(gltf);
+                })
+                .catch((err) => {
+                    console.error("Error: failed to load GLTF\nPath:", path, "\nReason", err);
+                    rej(err);
+                })
+                .finally(() => {
+                    isLoadingScene = false;
+                });
+        });
+    }
+
+    onMount(() => {
+
+        let sceneLoadedComplete = false;
+
+        renderer = new THREE.WebGLRenderer({
+            canvas,
+            antialias: true,
+        });
+
+        scene = new THREE.Scene();
+        loadGltfModel("/glb/house.glb")
+            .then((model) => {
+                model.scene.rotateX(.1);
+                scene.add(model.scene);
+
+                for (const child of model.scene.children) {
+                    if (child.name === 'Light' && child instanceof THREE.Light) {
+                       child.intensity = 5.0;
+                    }
+                }
+
+                sceneLoadedComplete = true;
+            });
+
+        const cameraTargetZ = 5.0;
+        camera = new THREE.PerspectiveCamera(45, renderer.domElement.width / renderer.domElement.height, 0.1, 1000);
+        camera.rotateX(0.1);
+        camera.position.x = 3.2;
+        camera.position.y = 0.6;
+        camera.position.z = 6.0;
+
+        const light = new THREE.AmbientLight(0xffffff, 0.05);
+        scene.add(light);
+
+        resizeCanvas();
+
+        renderer.setAnimationLoop(() => {
+
+            if (!sceneLoadedComplete) return;
+
+            if (camera.position.z > cameraTargetZ) {
+                camera.position.z -= 0.0002;
+                camera.fov += 0.1;
+            }
+
+            // Draw
+            renderer.render(scene, camera);
+        });
+
+    });
+
+</script>
+
+<!-- Hero -->
+<div class="hero">
+
+    <h1 class="is-hidden">Hello, you.</h1>
+
+    {#if isLoadingScene}
+        <img class="please-stand-by" src={TvTestImage} alt="Please stand by" />
+    {/if}
+
+    <canvas bind:this={canvas}></canvas>
+
+</div>
+
+<!-- Little about me -->
+
+<section class="about-me">
+
+    <div class="section site-wrapper">
+
+        <div class="col">
+
+            <h2 class="large-title text-neon">I'm Philip</h2>
+
+            <h3 class="sub-title">I’m a software developer based in Stockholm, Sweden.</h3>
+
+            <p class="text">I like creating things that are either usefull, fun or make people feel *something*</p>
+
+            <p class="text">
+                Right now I’m developing my own game in C++ on the free-time. Don’t worry, it’s about running a café.
+                Yes, a normal café. If you’re interested in following the process from the beginning til the inevitable end,
+                check out my blog.
+            </p>
+
+        </div>
+
+        <div class="col">
+            <figure class="figure">
+                <img src="/images/me.png" alt="I like to wear black clothing, sometimes a black cap." />
+            </figure>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Latest from blog -->
+
+<section class="recently-from-blog">
+
+    <div class="section site-wrapper">
+
+        <h2 class="section-title">Latest from my blog</h2>
+
+        <div class="grid">
+            {#if blogPosts.length > 0 }
+                {#each blogPosts as blogPost}
+                    <BlogPostCard blogPost={blogPost} />
+                {/each}
+            {:else}
+                <p>No blog posts</p>
+            {/if}
+
+        </div>
+
+    </div>
+
+</section>
+
+<svelte:head>
+    <title>Home - Philip Rosenqvist</title>
+    <meta
+        name="description"
+        content="Hello, my name is Philip Rosenqvist. I'm a software developer, and I'm currently developing my own game: Cafe Moi. You can find my blog here in which I write about the development of the game."
+    >
+</svelte:head>
+
+<svelte:window on:resize={() => resizeCanvas()} />
+
+<style>
+
+    .hero {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .please-stand-by {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: .7;
+        object-position: center center;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    .about-me {
+        position: relative;
+        width: 100%;
+        background-color: #0D0101;
+    }
+
+    .about-me::before {
+        background: url("/images/splatter-2.png");
+        bottom: 0;
+    }
+
+    .about-me .section {
+        position: relative;
+        z-index: 2;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .section h2 {
+        margin: 0;
+    }
+
+    .hero,
+    .recently-from-blog {
+        position: relative;
+    }
+
+    .hero::after {
+        background: url("/images/splatter.png");
+        bottom: 0;
+    }
+
+    .hero::after,
+    .about-me::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 16rem;
+        background-repeat: repeat-x;
+        background-size: contain;
+    }
+
+    .hero canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .large-title {
+        text-transform: uppercase;
+        font-size: 4rem;
+        margin: 0;
+    }
+
+    .sub-title {
+        font-size: 1.5rem;
+    }
+
+    .text-neon {
+        color: #981213;
+        text-shadow: 0 0 8px #981213, 0 0 16px #500506;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+    }
+
+    .col p,
+    .col h2,
+    .col h3 {
+        margin: 0;
+    }
+
+    .figure {
+        display: flex;
+        width: 100%;
+        max-height: 38rem;
+        aspect-ratio: 1;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    @media only screen and (min-width: 48rem) {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .large-title {
+            font-size: 6rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+        }
+
+        .section {
+            padding-block: 4rem;
+        }
+
+        .section {
+            gap: 4rem;
+        }
+
+        .sub-title {
+            font-size: 2rem;
+        }
+
+        .about-me .section {
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+
+    }
+
+    @media only screen and (min-width: 64rem) {
+
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+    }
+
+</style>
