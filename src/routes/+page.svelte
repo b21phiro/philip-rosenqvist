@@ -300,11 +300,16 @@
 
     .grid {
         display: flex;
-        gap: 2rem;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 1rem;
     }
 
-    @media only screen and (min-width: 700px) {
+    @media only screen and (min-width: 48rem) {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
 
         .large-title {
             font-size: 6rem;
@@ -329,6 +334,15 @@
         .about-me .section {
             flex-direction: row-reverse;
             align-items: center;
+        }
+
+    }
+
+    @media only screen and (min-width: 64rem) {
+
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
         }
 
     }
